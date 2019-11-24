@@ -1,75 +1,75 @@
-# PHP Standard Recommendations
+# PHP规范建议
 
-According to the [PSR Workflow Bylaw][workflow] each PSR has a status as it is being worked on. Once a proposal has passed the Entrance Vote it will be listed here as "Draft". Unless a PSR is marked as "Accepted" it is subject to change. Draft can change drastically, but Review will only have minor changes.
+每个 PSR 当前的状态源自 [PSR Workflow Bylaw][workflow]。一旦提案进入到投票阶段，将作为“草案”列在此处。在一项 PSR 被标记为 “接受（Accepted）” 之前，可能会发生改变。 草案可能会有较大变化，但审阅仅会有微小调整。
 
-As also described in the [PSR Workflow Bylaw][workflow]. The Editor, or editors, of a proposal are the essentially the lead contributors and writers of the PSRs and they are supported by two voting members. Those voting members are the Coordinator who is responsible for managing the review stage and votes; and a second sponsor.
+如 [PSR Workflow Bylaw][workflow] 所述。提案的作者基本上是 PSR 的主要贡献者或编写者，他们需要两个投票委员的支持。投票委员是负责管理评审阶段和投票的协调员，以及第二提案人。
 
-## Index by Status
+## 按状态分组的索引
 
-### Accepted
+### 接受（Accepted）
 
-| Num | Title                          | Editor                         |  Coordinator            | Sponsor                 |
-|:---:|--------------------------------|--------------------------------|-------------------------|-------------------------|
-| 1   | [Basic Coding Standard][psr1]  | Paul M. Jones                  | _N/A_                   | _N/A_                   |
-| 3   | [Logger Interface][psr3]       | Jordi Boggiano                 | _N/A_                   | _N/A_                   |
-| 4   | [Autoloading Standard][psr4]   | Paul M. Jones                  | Phil Sturgeon           | Larry Garfield          |
-| 6   | [Caching Interface][psr6]      | Larry Garfield                 | Paul Dragoonis          | Robert Hafner           |
-| 7   | [HTTP Message Interface][psr7] | Matthew Weier O'Phinney        | Beau Simensen           | Paul M. Jones           |
-| 11  | [Container Interface][psr11]   | Matthieu Napoli, David Négrier | Matthew Weier O'Phinney | Korvin Szanto           |
-| 12  | [Extended Coding Style Guide][psr12] | Korvin Szanto            | Alexander Makarov       |  Chris Tankersley       | 
-| 13  | [Hypermedia Links][psr13]      | Larry Garfield                 | Matthew Weier O'Phinney | Marc Alexander          |
-| 14  | [Event Dispatcher][psr14]      | Larry Garfield                 | _N/A_                   | Cees-Jan Kiewiet        |
-| 15  | [HTTP Handlers][psr15]         | Woody Gilk                     | _N/A_                   | Matthew Weier O'Phinney |
-| 16  | [Simple Cache][psr16]          | Paul Dragoonis                 | Jordi Boggiano          | Fabien Potencier        |
-| 17  | [HTTP Factories][psr17]        | Woody Gilk                     | _N/A_                   | Matthew Weier O'Phinney |
-| 18  | [HTTP Client][psr18]           | Tobias Nyholm                  | _N/A_                   | Sara Golemon            |
+| 序号 | 标题                | 作者                             | 协调人                     | 提案人                     |
+|----|-------------------|--------------------------------|-------------------------|-------------------------|
+| 1  | [基本代码规范][psr1]    | Paul M. Jones                  | _N/A_                   | _N/A_                   |
+| 3  | [日志接口][psr3]      | Jordi Boggiano                 | _N/A_                   | _N/A_                   |
+| 4  | [自动加载规范][psr4]    | Paul M. Jones                  | Phil Sturgeon           | Larry Garfield          |
+| 6  | [缓存接口][psr6]      | Larry Garfield                 | Paul Dragoonis          | Robert Hafner           |
+| 7  | [HTTP 消息接口][psr7] | Matthew Weier O'Phinney        | Beau Simensen           | Paul M. Jones           |
+| 11 | [容器接口][psr11]     | Matthieu Napoli, David Négrier | Matthew Weier O'Phinney | Korvin Szanto           |
+| 12 | [扩展编码风格指南][psr12] | Korvin Szanto                  | Alexander Makarov       | Chris Tankersley        |
+| 13 | [超媒体链接][psr13]    | Larry Garfield                 | Matthew Weier O'Phinney | Marc Alexander          |
+| 14 | [事件调度器][psr14]    | Larry Garfield                 | _N/A_                   | Cees-Jan Kiewiet        |
+| 15 | [HTTP 处理器][psr15] | Woody Gilk                     | _N/A_                   | Matthew Weier O'Phinney |
+| 16 | [简单缓存][psr16]     | Paul Dragoonis                 | Jordi Boggiano          | Fabien Potencier        |
+| 17 | [HTTP 工厂][psr17]  | Woody Gilk                     | _N/A_                   | Matthew Weier O'Phinney |
+| 18 | [HTTP 客户端][psr18] | Tobias Nyholm                  | _N/A_                   | Sara Golemon            |
 
-### Draft
+### 草案
 
-| Num | Title                                | Editor(s)                      |
-|:---:|--------------------------------------|--------------------------------|
-| 5   | [PHPDoc Standard][psr5]              | Chuck Burgess                  |
-| 19  | [PHPDoc tags][psr19]                 | Chuck Burgess                  |
+| 序号 | 标题                 | 作者            |
+|----|--------------------|---------------|
+| 5  | [PHPDoc 规范][psr5]  | Chuck Burgess |
+| 19 | [PHPDoc 标签][psr19] | Chuck Burgess |
 
-### Abandoned
+### 丢弃
 
-| Num | Title                                | Editor(s)                      |
-|:---:|--------------------------------------|--------------------------------|
-| 8   | [Huggable Interface][psr8]           | Larry Garfield                 |
-| 9   | [Security Advisories][psr9]          | Michael Hess                   |
-| 10  | [Security Reporting Process][psr10]  | Michael Hess                   |
+| 序号 | 标题                  | 作者             |
+|----|---------------------|----------------|
+| 8  | [Huggable 接口][psr8] | Larry Garfield |
+| 9  | [安全公告][psr9]        | Michael Hess   |
+| 10 | [安全报告流程][psr10]     | Michael Hess   |
 
-### Deprecated
+### 弃用
 
-| Num | Title                          | Editor                  |
-|:---:|--------------------------------|-------------------------|
-| 0   | [Autoloading Standard][psr0]   | Matthew Weier O'Phinney |
-| 2   | [Coding Style Guide][psr2]     | Paul M. Jones           |
+| 序号 | 标题             | 作者                      |
+|----|----------------|-------------------------|
+| 0  | [自动加载规范][psr0] | Matthew Weier O'Phinney |
+| 2  | [代码风格指南][psr2] | Paul M. Jones           |
 
-## Numerical Index
+## 编号索引
 
-| Num | Title                                | Editor(s)                      | Status     |
-|:---:|--------------------------------------|--------------------------------|------------|
-| 0   | [Autoloading Standard][psr0]         | Matthew Weier O'Phinney        | Deprecated |
-| 1   | [Basic Coding Standard][psr1]        | Paul M. Jones                  | Accepted   |
-| 2   | [Coding Style Guide][psr2]           | Paul M. Jones                  | Deprecated |
-| 3   | [Logger Interface][psr3]             | Jordi Boggiano                 | Accepted   |
-| 4   | [Autoloading Standard][psr4]         | Paul M. Jones                  | Accepted   |
-| 5   | [PHPDoc Standard][psr5]              | Chuck Burgess                  | Draft      |
-| 6   | [Caching Interface][psr6]            | Larry Garfield                 | Accepted   |
-| 7   | [HTTP Message Interface][psr7]       | Matthew Weier O'Phinney        | Accepted   |
-| 8   | [Huggable Interface][psr8]           | Larry Garfield                 | Abandoned  |
-| 9   | [Security Advisories][psr9]          | Michael Hess                   | Abandoned  |
-| 10  | [Security Reporting Process][psr10]  | Michael Hess                   | Abandoned  |
-| 11  | [Container Interface][psr11]         | Matthieu Napoli, David Négrier | Accepted   |
-| 12  | [Extended Coding Style Guide][psr12] | Korvin Szanto                  | Accepted   |
-| 13  | [Hypermedia Links][psr13]            | Larry Garfield                 | Accepted   |
-| 14  | [Event Dispatcher][psr14]            | Larry Garfield                 | Accepted   |
-| 15  | [HTTP Handlers][psr15]               | Woody Gilk                     | Accepted   |
-| 16  | [Simple Cache][psr16]                | Paul Dragoonis                 | Accepted   |
-| 17  | [HTTP Factories][psr17]              | Woody Gilk                     | Accepted   |
-| 18  | [HTTP Client][psr18]                 | Tobias Nyholm                  | Accepted   |
-| 19  | [PHPDoc tags][psr19]                 | Chuck Burgess                  | Draft      |
+| 序号 | 标题                  | 作者                             | 状态 |
+|----|---------------------|--------------------------------|----|
+| 0  | [自动加载规范][psr0]      | Matthew Weier O'Phinney        | 弃用 |
+| 1  | [基本代码规范][psr1]      | Paul M. Jones                  | 接受 |
+| 2  | [代码风格指南][psr2]      | Paul M. Jones                  | 弃用 |
+| 3  | [日志接口][psr3]        | Jordi Boggiano                 | 接受 |
+| 4  | [自动加载规范][psr4]      | Paul M. Jones                  | 接受 |
+| 5  | [PHPDoc 规范][psr5]   | Chuck Burgess                  | 草案 |
+| 6  | [缓存接口][psr6]        | Larry Garfield                 | 接受 |
+| 7  | [HTTP 消息接口][psr7]   | Matthew Weier O'Phinney        | 接受 |
+| 8  | [Huggable 接口][psr8] | Larry Garfield                 | 丢弃 |
+| 9  | [安全公告][psr9]        | Michael Hess                   | 丢弃 |
+| 10 | [安全报告流程][psr10]     | Michael Hess                   | 丢弃 |
+| 11 | [容器接口][psr11]       | Matthieu Napoli, David Négrier | 接受 |
+| 12 | [扩展代码风格指南][psr12]   | Korvin Szanto                  | 接受 |
+| 13 | [超媒体链接][psr13]      | Larry Garfield                 | 接受 |
+| 14 | [事件调度器][psr14]      | Larry Garfield                 | 接受 |
+| 15 | [HTTP 处理器][psr15]   | Woody Gilk                     | 接受 |
+| 16 | [简单缓存][psr16]       | Paul Dragoonis                 | 接受 |
+| 17 | [HTTP 工厂][psr17]    | Woody Gilk                     | 接受 |
+| 18 | [HTTP 客户端][psr18]   | Tobias Nyholm                  | 接受 |
+| 19 | [PHPDoc 标签][psr19]  | Chuck Burgess                  | 草案 |
 
 [workflow]: https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-workflow.md
 [psr0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
