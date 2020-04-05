@@ -4,7 +4,7 @@
 
 本文档中的 「必须（MUST）」、「不得（MUST NOT）」、「必须（REQUIRED）」、「必须（SHALL）」、
 「不得（SHALL NOT）」、「应当（SHOULD）」、「不应（SHOULD NOT）」、「推荐（RECOMMENDED）」、
-「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照照[RFC 2119] 的说明进行解释。
+「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照照 [RFC 2119] 的说明进行解释。
 
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
 [PSR-0]: https://github.com/liuxingwei/fig-standards/blob/master/accepted/PSR-0.md
@@ -35,7 +35,7 @@ PHP 代码**必须**使用长的 `<?php ?>` 标签 或短的 `<?= ?>` 输出标�
 
 ### 2.2. 字符编码
 
-PHP **必须**仅使用不琮 BOM 头的 UTF-8 编码。
+PHP **必须**仅使用不带有 BOM 头的 UTF-8 编码。
 
 ### 2.3. 副作用
 
@@ -47,7 +47,7 @@ PHP **必须**仅使用不琮 BOM 头的 UTF-8 编码。
 「副作用」包括但不限于：生成输出，显式使用 `require` 或 `include`，连接外部服务，修改 ini 设置，
 引发错误或异常，修改全局或局部变量，读写文件，等等。
 
-下面是一个同时进行声明和引发珍的例子；
+下面是一个同时进行声明和引发副作用的例子；
 同时也是如何进行规避的示例：
 
 ~~~php
@@ -122,7 +122,7 @@ class Vendor_Model_Foo
 
 ## 4. 类常量、属性和方法
 
-术语「类」指所有的类、接口和traits。
+术语「类」指所有的类、接口和    traits。
 
 ### 4.1. 常量
 
