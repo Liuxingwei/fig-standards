@@ -71,24 +71,24 @@
 | 18 | [HTTP 客户端][psr18]   | Tobias Nyholm                  | 接受 |
 | 19 | [PHPDoc 标签][psr19]  | Chuck Burgess                  | 草案 |
 
-[workflow]: https://github.com/php-fig/fig-standards/blob/master/bylaws/002-psr-workflow.md
-[psr0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-[psr1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
-[psr2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
-[psr3]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md
-[psr4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader-meta.md
-[psr5]: https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md
-[psr6]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-6-cache.md
-[psr7]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-7-http-message.md
-[psr8]: https://github.com/php-fig/fig-standards/blob/master/proposed/psr-8-hug/
-[psr9]: https://github.com/php-fig/fig-standards/blob/master/proposed/security-disclosure-publication.md
-[psr10]: https://github.com/php-fig/fig-standards/blob/master/proposed/security-reporting-process.md
-[psr11]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-11-container.md
-[psr12]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-12-extended-coding-style-guide.md
-[psr13]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-13-links.md
-[psr14]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-14-event-dispatcher.md
-[psr15]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-15-request-handlers.md
-[psr16]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-16-simple-cache.md
-[psr17]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-17-http-factory.md
-[psr18]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-18-http-client.md
-[psr19]: https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc-tags.md
+[workflow]: https://github\.com/Liuxingwei/fig-standards/tree/master/bylaws/002-psr-workflow.md
+[psr0]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-0.md
+[psr1]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-1-basic-coding-standard.md
+[psr2]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-2-coding-style-guide.md
+[psr3]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-3-logger-interface.md
+[psr4]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-4-autoloader-meta.md
+[psr5]: https://github\.com/Liuxingwei/fig-standards/tree/master/proposed/phpdoc.md
+[psr6]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-6-cache.md
+[psr7]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-7-http-message.md
+[psr8]: https://github\.com/Liuxingwei/fig-standards/tree/master/proposed/psr-8-hug/
+[psr9]: https://github\.com/Liuxingwei/fig-standards/tree/master/proposed/security-disclosure-publication.md
+[psr10]: https://github\.com/Liuxingwei/fig-standards/tree/master/proposed/security-reporting-process.md
+[psr11]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-11-container.md
+[psr12]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-12-extended-coding-style-guide.md
+[psr13]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-13-links.md
+[psr14]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-14-event-dispatcher.md
+[psr15]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-15-request-handlers.md
+[psr16]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-16-simple-cache.md
+[psr17]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-17-http-factory.md
+[psr18]: https://github\.com/Liuxingwei/fig-standards/tree/master/accepted/PSR-18-http-client.md
+[psr19]: https://github\.com/Liuxingwei/fig-standards/tree/master/proposed/phpdoc-tags.md
