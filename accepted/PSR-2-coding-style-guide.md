@@ -1,64 +1,51 @@
-# Coding Style Guide
+# 编码风格指南
 
-> **Deprecated** - As of 2019-08-10 PSR-2 has been marked as deprecated. [PSR-12] is now recommended
-as an alternative.
+> **弃用** - 2019-08-10 PSR-2 已被标记为弃用。建议使用 [PSR-12] 代替。
 
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
 
-This guide extends and expands on [PSR-1], the basic coding standard.
+本指南扩展自 [PSR-1]（基本编码规范）。
 
-The intent of this guide is to reduce cognitive friction when scanning code
-from different authors. It does so by enumerating a shared set of rules and
-expectations about how to format PHP code.
+本指南的目的是减少不同错误浏览代码时的认知分歧。这是通过列举一组有关如何格式化 PHP 代码的
+共享规则来实现的。
 
-The style rules herein are derived from commonalities among the various member
-projects. When various authors collaborate across multiple projects, it helps
-to have one set of guidelines to be used among all those projects. Thus, the
-benefit of this guide is not in the rules themselves, but in the sharing of
-those rules.
+本文中的风格规则来自于各个成员项目之间的共性。当不同的作者跨多个项目协作，在所有这些项目中使用一套指导原则
+是有帮助的。因此，本指南的好处不在于规则本身，而在于共享这些规则.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119].
+本文档中的 「必须（MUST）」、「不得（MUST NOT）」、「必须（REQUIRED）」、「必须（SHALL）」、
+「不得（SHALL NOT）」、「应当（SHOULD）」、「不应（SHOULD NOT）」、「推荐（RECOMMENDED）」、
+「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照照 [RFC 2119] 的说明进行解释。
 
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
-[PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
-[PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+[PSR-0]: https://github.com/liuxingwei/fig-standards/blob/master/accepted/PSR-0.md
+[PSR-1]: https://github.com/liuxingwei/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
 
-## 1. Overview
+## 1. 概述
 
-- Code MUST follow a "coding style guide" PSR [[PSR-1]].
+- 代码**必须**遵循「编码风格指南」规范 [[PSR-1]]。
 
-- Code MUST use 4 spaces for indenting, not tabs.
+- 代码**必须**使用 4 个空格缩进，不得使用制表符。
 
-- There MUST NOT be a hard limit on line length; the soft limit MUST be 120
-  characters; lines SHOULD be 80 characters or less.
+- 行长**不得**有硬边界；软件边界**必须**是 120 个字符；每行**应当**少于或等于 80 个字符。
 
-- There MUST be one blank line after the `namespace` declaration, and there
-  MUST be one blank line after the block of `use` declarations.
+- `namespace` 声明后面**必须**跟一个空行，`use` 声明块的后面也**必须**跟一个空行。
 
-- Opening braces for classes MUST go on the next line, and closing braces MUST
-  go on the next line after the body.
+- 类的左大括号**必须**起始于一个新行，右大括号必须在代码体的下一行。
 
-- Opening braces for methods MUST go on the next line, and closing braces MUST
-  go on the next line after the body.
+- 方法的左大括号**必须**起始于一个新行，右大括号必须在方法体的下一行。
 
-- Visibility MUST be declared on all properties and methods; `abstract` and
-  `final` MUST be declared before the visibility; `static` MUST be declared
-  after the visibility.
+- 所有属性和方法**必须**声明可见性；`abstract` 和 `final` **必须**在可见性之前声明；`static` **必须**
+在可见性之后声明。
 
-- Control structure keywords MUST have one space after them; method and
-  function calls MUST NOT.
+- 流程控制关键诩后面**必须**有一个空格；方法和函数名后面**不得**有空格。
 
-- Opening braces for control structures MUST go on the same line, and closing
-  braces MUST go on the next line after the body.
+- 流程控制的左大花括号**必须**和关键词在同一行，右大花括号必须在代码体的下一行。
 
-- Opening parentheses for control structures MUST NOT have a space after them,
-  and closing parentheses for control structures MUST NOT have a space before.
+- 流程控制的左大花括号后面**不得**空格，右大花括号的前面也**不得**有空格。
 
-### 1.1. Example
+### 1.1. 示例
 
-This example encompasses some of the rules below as a quick overview:
+下面这个例子包含了概述中的一些规则：
 
 ~~~php
 <?php
@@ -83,71 +70,66 @@ class Foo extends Bar implements FooInterface
 
     final public static function bar()
     {
-        // method body
+        // 方法体
     }
 }
 ~~~
 
-## 2. General
+## 2. 总则
 
-### 2.1. Basic Coding Standard
+### 2.1. 基本编码标准
 
-Code MUST follow all rules outlined in [PSR-1].
+代码**必须**完全遵循 [PSR-1] 中概括的规则。
 
-### 2.2. Files
+### 2.2. 文件
 
-All PHP files MUST use the Unix LF (linefeed) line ending.
+所有的 PHP 文件**必须**使用 Unix LF (linefeed) 作为行结束符。
 
-All PHP files MUST end with a single blank line.
+所有的 PHP 文件**必须**用一个单独的空行作为文件的结束。
 
-The closing `?>` tag MUST be omitted from files containing only PHP.
+仅包含 PHP 代码的文件**必须**省略结束的 `?>` 标签。
 
-### 2.3. Lines
+### 2.3. 行
 
-There MUST NOT be a hard limit on line length.
+行长**不得**有硬边界。
 
-The soft limit on line length MUST be 120 characters; automated style checkers
-MUST warn but MUST NOT error at the soft limit.
+行长的软边界**必须**是 120 个字符；自动检查器对软件边界**必须**告警，但**不得**报错。
 
-Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD
-be split into multiple subsequent lines of no more than 80 characters each.
+行**不应**超过 80 个字符；长行**应当**被拆分成多个的行，每行不得超过 80 个字符。
 
-There MUST NOT be trailing whitespace at the end of non-blank lines.
+非空行的末尾**不得**有尾空白。
 
-Blank lines MAY be added to improve readability and to indicate related
-blocks of code.
+**可以**适当的添加空行以提高可读性，同时表明代码块的关联性。
 
-There MUST NOT be more than one statement per line.
+每行**不得**包含多个语句。
 
-### 2.4. Indenting
+### 2.4. 缩进
 
-Code MUST use an indent of 4 spaces, and MUST NOT use tabs for indenting.
+代码**必须**使用 4 个空格缩进，**不得**使用制表符缩进。
 
-> N.b.: Using only spaces, and not mixing spaces with tabs, helps to avoid
-> problems with diffs, patches, history, and annotations. The use of spaces
-> also makes it easy to insert fine-grained sub-indentation for inter-line
-> alignment.
 
-### 2.5. Keywords and True/False/Null
+> 注意：仅使用空格，不混用空格和制表符，有助于避免差异、补丁、历史和注释的问题。使用空格
+> 还能使得为对齐行插入细粒度的子缩进变得更容易。
 
-PHP [keywords] MUST be in lower case.
+### 2.5. 关键词和 True/False/Null
 
-The PHP constants `true`, `false`, and `null` MUST be in lower case.
+PHP [关键词] **必须**小写。
+
+ PHP 常量 `true`、`false` 和 `null` 也**必须**小写。
 
 [keywords]: http://php.net/manual/en/reserved.keywords.php
 
-## 3. Namespace and Use Declarations
+## 3. 命名空间和 Use 声明
 
-When present, there MUST be one blank line after the `namespace` declaration.
+`namespace` 声明后面**必须**跟一个空行。
 
-When present, all `use` declarations MUST go after the `namespace`
-declaration.
+所有 `use` 声明**必须**在 `namespace` 声明之后。
 
-There MUST be one `use` keyword per declaration.
+每个 `use` 关键词**必须**单独声明。
 
-There MUST be one blank line after the `use` block.
+`use` 声明块后面**必须**跟一个空行。
 
-For example:
+示例：
 
 ~~~php
 <?php
@@ -157,21 +139,19 @@ use FooClass;
 use BarClass as Bar;
 use OtherVendor\OtherPackage\BazClass;
 
-// ... additional PHP code ...
+// ... 其它的 PHP 代码 ...
 
 ~~~
 
-## 4. Classes, Properties, and Methods
+## 4. 类、属性和方法
 
-The term "class" refers to all classes, interfaces, and traits.
+术语类泛指所有的类、接口和 traits。
 
-### 4.1. Extends and Implements
+### 4.1. Extends 和 Implements
 
-The `extends` and `implements` keywords MUST be declared on the same line as
-the class name.
+`extends` 和 `implements` 关键词**必须**和类名在同一行声明。
 
-The opening brace for the class MUST go on its own line; the closing brace
-for the class MUST go on the next line after the body.
+类的左大花括号**必须**单独占一行，右大花括号**必须**在代码体的下一行。
 
 ~~~php
 <?php
@@ -183,13 +163,12 @@ use OtherVendor\OtherPackage\BazClass;
 
 class ClassName extends ParentClass implements \ArrayAccess, \Countable
 {
-    // constants, properties, methods
+    // 常量、属性、方法
 }
 ~~~
 
-Lists of `implements` MAY be split across multiple lines, where each
-subsequent line is indented once. When doing so, the first item in the list
-MUST be on the next line, and there MUST be only one interface per line.
+`implements` 列表**可以**拆成多行，后续的每行有一个缩进。这样做的时候，列表的第一个元素
+**必须**在新行上，并且每个接口**必须**单独占一行。
 
 ~~~php
 <?php
@@ -204,22 +183,21 @@ class ClassName extends ParentClass implements
     \Countable,
     \Serializable
 {
-    // constants, properties, methods
+    // 常量、属性、方法
 }
 ~~~
 
-### 4.2. Properties
+### 4.2. 属性
 
-Visibility MUST be declared on all properties.
+每个属性**必须**声明可见性。
 
-The `var` keyword MUST NOT be used to declare a property.
+**不得**使用 `var` 关键词声明属性。
 
-There MUST NOT be more than one property declared per statement.
+一个语句**不得**声明多个属性。
 
-Property names SHOULD NOT be prefixed with a single underscore to indicate
-protected or private visibility.
+属性名**不应**使用单个下划线作前缀来表明属性的 protected 或 private 可见性。
 
-A property declaration looks like the following.
+属性声明见下面的例子：
 
 ~~~php
 <?php
@@ -231,20 +209,16 @@ class ClassName
 }
 ~~~
 
-### 4.3. Methods
+### 4.3. 方法
 
-Visibility MUST be declared on all methods.
+方法**必须**声明可见性。
 
-Method names SHOULD NOT be prefixed with a single underscore to indicate
-protected or private visibility.
+方法名**不应**使用单个下划线作前缀来表明属性的 protected 或 private 可见性。
 
-Method names MUST NOT be declared with a space after the method name. The
-opening brace MUST go on its own line, and the closing brace MUST go on the
-next line following the body. There MUST NOT be a space after the opening
-parenthesis, and there MUST NOT be a space before the closing parenthesis.
+方法声明**不得**在方法名后面加空格。左大花括号**必须**单独占一行，右大花括号**必须**
+在方法体的下一行。左大花括号后面**不得**有空格，右大花括号前**不得**有空格。
 
-A method declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+方法声明见下面的例子。注意括号、逗号、空格和大括号的位置。
 
 ~~~php
 <?php
@@ -254,18 +228,16 @@ class ClassName
 {
     public function fooBarBaz($arg1, &$arg2, $arg3 = [])
     {
-        // method body
+        // 方法体
     }
 }
 ~~~
 
-### 4.4. Method Arguments
+### 4.4. 方法参数
 
-In the argument list, there MUST NOT be a space before each comma, and there
-MUST be one space after each comma.
+参数列表中，逗号前**不得**有空格，逗号后**必须**有一个空格。
 
-Method arguments with default values MUST go at the end of the argument
-list.
+带有默认值的方法参数**必须**在参数列表的最后。
 
 ~~~php
 <?php
@@ -275,18 +247,15 @@ class ClassName
 {
     public function foo($arg1, &$arg2, $arg3 = [])
     {
-        // method body
+        // 方法体
     }
 }
 ~~~
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line.
+参数列表**可以**拆成多行，后续的每行要有一个缩进。这样做的时候，列表的第一个元素**必须**在
+下一行上，每个参数**必须**单独占一行。
 
-When the argument list is split across multiple lines, the closing parenthesis
-and opening brace MUST be placed together on their own line with one space
-between them.
+如果参数列表拆成多行时，右括号**必须**和左大花括号在同一行上，并且用一个空格分隔开。
 
 ~~~php
 <?php
@@ -299,18 +268,16 @@ class ClassName
         &$arg2,
         array $arg3 = []
     ) {
-        // method body
+        // 方法体
     }
 }
 ~~~
 
-### 4.5. `abstract`, `final`, and `static`
+### 4.5. `abstract`、`final` 和 `static`
 
-When present, the `abstract` and `final` declarations MUST precede the
-visibility declaration.
+`abstract` 和 `final` 声明**必须**在可见性声明之前。
 
-When present, the `static` declaration MUST come after the visibility
-declaration.
+`static` 声明**必须**在可见性声明之后。
 
 ~~~php
 <?php
@@ -324,18 +291,15 @@ abstract class ClassName
 
     final public static function bar()
     {
-        // method body
+        // 方法体
     }
 }
 ~~~
 
-### 4.6. Method and Function Calls
+### 4.6. 方法和函数调用
 
-When making a method or function call, there MUST NOT be a space between the
-method or function name and the opening parenthesis, there MUST NOT be a space
-after the opening parenthesis, and there MUST NOT be a space before the
-closing parenthesis. In the argument list, there MUST NOT be a space before
-each comma, and there MUST be one space after each comma.
+在调用方法或函数时，在方法或者函数名与左括号之间**不得**有空格，左括号后也**不得**有空格，
+右括号前也**不得**有空格。参数列表的逗号前**不得**有空格，逗号后**必须**有一个空格。
 
 ~~~php
 <?php
@@ -344,9 +308,8 @@ $foo->bar($arg1);
 Foo::bar($arg2, $arg3);
 ~~~
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line.
+参数列表**可以**拆成多行，后续的每行要有一个缩进。这样做的时候，列表的第一个元素**必须**在
+下一行上，每个参数**必须**单独占一行。
 
 ~~~php
 <?php
@@ -357,49 +320,43 @@ $foo->bar(
 );
 ~~~
 
-## 5. Control Structures
+## 5. 流程控制
 
-The general style rules for control structures are as follows:
+流程控制的总体规则如下：
 
-- There MUST be one space after the control structure keyword
-- There MUST NOT be a space after the opening parenthesis
-- There MUST NOT be a space before the closing parenthesis
-- There MUST be one space between the closing parenthesis and the opening
-  brace
-- The structure body MUST be indented once
-- The closing brace MUST be on the next line after the body
+- 流程控制关键词后面**必须**有一个空格
+- 左括号后面**不得**有空格
+- 右括号前面**不得**有空格
+- 右括号和左大花括号间**必须**有一个空格
+- 代码体**必须**有一个缩进
+- 右大花括号**必须**在代码体的下一行。
 
-The body of each structure MUST be enclosed by braces. This standardizes how
-the structures look, and reduces the likelihood of introducing errors as new
-lines get added to the body.
+流程的代码体**必须**用大花括号括住。这会使结构外观标准化，并且降低向代码体添加新行时引入错误的
+可能性。
 
-### 5.1. `if`, `elseif`, `else`
+### 5.1. `if`、`elseif`、`else`
 
-An `if` structure looks like the following. Note the placement of parentheses,
-spaces, and braces; and that `else` and `elseif` are on the same line as the
-closing brace from the earlier body.
+`if` 结构如下。注意括号、空格和大花括号的位置；`else` 和 `elseif` 与其前面的代码体的右大花
+括号同处一行。
 
 ~~~php
 <?php
 if ($expr1) {
-    // if body
+    // if 代码体
 } elseif ($expr2) {
-    // elseif body
+    // elseif 代码体
 } else {
-    // else body;
+    // else 代码体;
 }
 ~~~
 
-The keyword `elseif` SHOULD be used instead of `else if` so that all control
-keywords look like single words.
+**应当**使用 `elseif` 代替 `else if`，这样一来，流程控制关键词看上去像一个单词。
 
-### 5.2. `switch`, `case`
+### 5.2. `switch`、`case`
 
-A `switch` structure looks like the following. Note the placement of
-parentheses, spaces, and braces. The `case` statement MUST be indented once
-from `switch`, and the `break` keyword (or other terminating keyword) MUST be
-indented at the same level as the `case` body. There MUST be a comment such as
-`// no break` when fall-through is intentional in a non-empty `case` body.
+`switch` 如下。注意括号、空格和大花括号的位置。`case` 语句**必须**相对 `switch` 缩进一次，
+`break` 关键诩（或者其它终止关键词）**必须**和同级别的 `case` 体保持相同的缩进。一个非空的故
+意要 fall-through 的 `case` 体**必须**有类似 `// no break` 的注释。
 
 ~~~php
 <?php
@@ -421,111 +378,95 @@ switch ($expr) {
 }
 ~~~
 
-### 5.3. `while`, `do while`
+### 5.3. `while`、`do while`
 
-A `while` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`while` 语句如下。注意括号、空格和大花括号的位置。
 
 ~~~php
 <?php
 while ($expr) {
-    // structure body
+    // 循环体
 }
 ~~~
 
-Similarly, a `do while` statement looks like the following. Note the placement
-of parentheses, spaces, and braces.
+与此类似，`do while` 语句如下。注意括号、空格和大花括号的位置。
 
 ~~~php
 <?php
 do {
-    // structure body;
+    // 循环体;
 } while ($expr);
 ~~~
 
 ### 5.4. `for`
 
-A `for` statement looks like the following. Note the placement of parentheses,
-spaces, and braces.
+`for` 语句如下。注意括号、空格和大花括号的位置。
 
 ~~~php
 <?php
 for ($i = 0; $i < 10; $i++) {
-    // for body
+    // 循环体
 }
 ~~~
 
 ### 5.5. `foreach`
 
-A `foreach` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`foreach` 语句如下。注意括号、空格和大花括号的位置。
 
 ~~~php
 <?php
 foreach ($iterable as $key => $value) {
-    // foreach body
+    // foreach 代码体
 }
 ~~~
 
-### 5.6. `try`, `catch`
+### 5.6. `try`、`catch`
 
-A `try catch` block looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`try catch` 语句如下。注意括号、空格和大花括号的位置。
 
 ~~~php
 <?php
 try {
-    // try body
+    // try 代码体
 } catch (FirstExceptionType $e) {
-    // catch body
+    // catch 代码体
 } catch (OtherExceptionType $e) {
-    // catch body
+    // catch 代码体
 }
 ~~~
 
-## 6. Closures
+## 6. 闭包
 
-Closures MUST be declared with a space after the `function` keyword, and a
-space before and after the `use` keyword.
+装饰**必须**使用后面带有一个空格的 `function` 关键词声明，并且 `use` 关键词前后均要有一
+个空格。
 
-The opening brace MUST go on the same line, and the closing brace MUST go on
-the next line following the body.
+左大花括号**必须**与声明在同一行上，右大花括号**必须**在代码体的下一行。
 
-There MUST NOT be a space after the opening parenthesis of the argument list
-or variable list, and there MUST NOT be a space before the closing parenthesis
-of the argument list or variable list.
+参数和变量列表的左括号后**不得**有空格，右括号前也**不得**有空格。
 
-In the argument list and variable list, there MUST NOT be a space before each
-comma, and there MUST be one space after each comma.
+参数和变量列表的逗号前**不得**有空格，逗号后**必须**有一个空格。
 
-Closure arguments with default values MUST go at the end of the argument
-list.
+带有默认值的闭包方法参数**必须**在参数列表的最后。
 
-A closure declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+闭包声明如下。语句如下。注意括号、空格、逗号和大花括号的位置:
 
 ~~~php
 <?php
 $closureWithArgs = function ($arg1, $arg2) {
-    // body
+    // 代码体
 };
 
 $closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
-    // body
+    // 代码体
 };
 ~~~
 
-Argument lists and variable lists MAY be split across multiple lines, where
-each subsequent line is indented once. When doing so, the first item in the
-list MUST be on the next line, and there MUST be only one argument or variable
-per line.
+参数列表和变量列表**可以**拆成多行，后续的每行要有一个缩进。这样做的时候，列表的第一个元素**必须**在
+下一行上，每个参数或变量**必须**单独占一行。
 
-When the ending list (whether of arguments or variables) is split across
-multiple lines, the closing parenthesis and opening brace MUST be placed
-together on their own line with one space between them.
+如果参数列表或变量列表拆成多行时，右括号**必须**和左大花括号在同一行上，并且用一个空格分隔开。
 
-The following are examples of closures with and without argument lists and
-variable lists split across multiple lines.
+下面是带有和不带有参数列表和變量列表，列表拆分成釣多行的示例
 
 ~~~php
 <?php
@@ -534,7 +475,7 @@ $longArgs_noVars = function (
     $longerArgument,
     $muchLongerArgument
 ) {
-    // body
+    // 代碼體
 };
 
 $noArgs_longVars = function () use (
@@ -542,7 +483,7 @@ $noArgs_longVars = function () use (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // 代碼體
 };
 
 $longArgs_longVars = function (
@@ -554,7 +495,7 @@ $longArgs_longVars = function (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // 代碼體
 };
 
 $longArgs_shortVars = function (
@@ -562,7 +503,7 @@ $longArgs_shortVars = function (
     $longerArgument,
     $muchLongerArgument
 ) use ($var1) {
-    // body
+    // 代碼體
 };
 
 $shortArgs_longVars = function ($arg) use (
@@ -570,52 +511,48 @@ $shortArgs_longVars = function ($arg) use (
     $longerVar2,
     $muchLongerVar3
 ) {
-    // body
+    // 代碼體
 };
 ~~~
 
-Note that the formatting rules also apply when the closure is used directly
-in a function or method call as an argument.
+当闭包直接用作函数或方法调用的参数时，这些格式化规则也适用。
 
 ~~~php
 <?php
 $foo->bar(
     $arg1,
     function ($arg2) use ($var1) {
-        // body
+        // 代码体
     },
     $arg3
 );
 ~~~
 
-## 7. Conclusion
+## 7. 结论
 
-There are many elements of style and practice intentionally omitted by this
-guide. These include but are not limited to:
+本指南有意忽略了一些风格和实践要素。包括但不限于：
 
-- Declaration of global variables and global constants
+- 全局变量和全局常量声明
 
-- Declaration of functions
+- 函数声明
 
-- Operators and assignment
+- 运算符和赋值
 
-- Inter-line alignment
+- 行间对齐
 
-- Comments and documentation blocks
+- 注释和文档块
 
-- Class name prefixes and suffixes
+- 类名前缀和后缀
 
-- Best practices
+- 最佳实践
 
-Future recommendations MAY revise and extend this guide to address those or
-other elements of style and practice.
+建议未来**可以**修订和扩充本指南，以处理这些和另外的风格和实践要素。
 
-## Appendix A. Survey
+## 附录 A. 调查
 
-In writing this style guide, the group took a survey of member projects to
-determine common practices.  The survey is retained herein for posterity.
+在编写本风格指南时，该小组对成员项目进行了调查，以确定常见做法。此项调查留在这儿，可以为后来者所用。
 
-### A.1. Survey Data
+### A.1. 调查数据
 
     url,http://www.horde.org/apps/horde/docs/CODING_STANDARDS,http://pear.php.net/manual/en/standards.php,http://solarphp.com/manual/appendix-standards.style,http://framework.zend.com/manual/en/coding-standard.html,https://symfony.com/doc/2.0/contributing/code/standards.html,http://www.ppi.io/docs/coding-standards.html,https://github.com/ezsystems/ezp-next/wiki/codingstandards,http://book.cakephp.org/2.0/en/contributing/cakephp-coding-conventions.html,https://github.com/UnionOfRAD/lithium/wiki/Spec%3A-Coding,http://drupal.org/coding-standards,http://code.google.com/p/sabredav/,http://area51.phpbb.com/docs/31x/coding-guidelines.html,https://docs.google.com/a/zikula.org/document/edit?authkey=CPCU0Us&hgd=1&id=1fcqb93Sn-hR9c0mkN6m_tyWnmEvoswKBtSc0tKkZmJA,http://www.chisimba.com,n/a,https://github.com/Respect/project-info/blob/master/coding-standards-sample.php,n/a,Object Calisthenics for PHP,http://doc.nette.org/en/coding-standard,http://flow3.typo3.org,https://github.com/propelorm/Propel2/wiki/Coding-Standards,http://developer.joomla.org/coding-standards.html
     voting,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,yes,no,no,no,?,yes,no,yes
@@ -641,72 +578,72 @@ determine common practices.  The survey is retained herein for posterity.
     blank_line_after_php,no,no,no,no,yes,no,no,no,no,yes,yes,no,no,yes,?,yes,yes,no,yes,no,yes,no
     class_method_control_brace,next/next/same,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/next,same/same/same,same/same/same,same/same/same,same/same/same,next/next/next,next/next/same,next/same/same,next/next/next,next/next/same,next/next/same,next/next/same,next/next/same,same/same/same,next/next/same,next/next/next
 
-### A.2. Survey Legend
+### A.2. 调查解读
 
 `indent_type`:
-The type of indenting. `tab` = "Use a tab", `2` or `4` = "number of spaces"
+缩进风格。 `tab` = "使用一个制表符"， `2` 或 `4` = "空格个数"
 
 `line_length_limit_soft`:
-The "soft" line length limit, in characters. `?` = not discernible or no response, `no` means no limit.
+行长的软边界，以字符为单位。 `?` = 无法识别或无响应， `no` 意为无限制。
 
 `line_length_limit_hard`:
-The "hard" line length limit, in characters. `?` = not discernible or no response, `no` means no limit.
+行长的硬边界，以字符为单位。 `?` = 无法识别或无响应， `no` 意为无限制。
 
 `class_names`:
-How classes are named. `lower` = lowercase only, `lower_under` = lowercase with underscore separators, `studly` = StudlyCase.
+类如何命名。 `lower` = 仅有小写字母， `lower_under` = 小写字母加下载划间隔， `studly` = StudlyCase。
 
 `class_brace_line`:
-Does the opening brace for a class go on the `same` line as the class keyword, or on the `next` line after it?
+`same` 表示 左大花括号与 class 关键字在同一行，`next` 则表示另起新行。
 
 `constant_names`:
-How are class constants named? `upper` = Uppercase with underscore separators.
+常量如何命名？ `upper` = 大写并带有下划线间隔。
 
 `true_false_null`:
-Are the `true`, `false`, and `null` keywords spelled as all `lower` case, or all `upper` case?
+`true`、`false` 和 `null` 关键字是用 `lower` （小写字母），还是全部 `upper` （大写字母）？
 
 `method_names`:
-How are methods named? `camel` = `camelCase`, `lower_under` = lowercase with underscore separators.
+方法如何命名？ `camel` = `camelCase`， `lower_under` = 小写字母并带有下划线间隔。
 
 `method_brace_line`:
-Does the opening brace for a method go on the `same` line as the method name, or on the `next` line?
+`same` 表示左大花括号与 method 在同一行，`next` 表示另起新行。
 
 `control_brace_line`:
-Does the opening brace for a control structure go on the `same` line, or on the `next` line?
+`same` 表示左大花括号与流程控制关键字同行，`next` 表示另起新行。
 
 `control_space_after`:
-Is there a space after the control structure keyword?
+流程控制关键字后面有没有空格？
 
 `always_use_control_braces`:
-Do control structures always use braces?
+流程控制总是使用大花括号？
 
 `else_elseif_line`:
-When using `else` or `elseif`, does it go on the `same` line as the previous closing brace, or does it go on the `next` line?
+使用 `else` 或 `elseif` 的时候， `same` 表示和前面的右花括号同行，`next` 表示另起新行。
 
 `case_break_indent_from_switch`:
-How many times are `case` and `break` indented from an opening `switch` statement?
+相对于 `switch`，`case` 和 `break` 缩进几次？
 
 `function_space_after`:
-Do function calls have a space after the function name and before the opening parenthesis?
+函数调用时，函数名后面和左括号前面是否有空格？
 
 `closing_php_tag_required`:
-In files containing only PHP, is the closing `?>` tag required?
+仅包含 PHP 的文件，关闭标签 `?>` 是否必须？
 
 `line_endings`:
-What type of line ending is used?
+使用哪种行结束风格？
 
 `static_or_visibility_first`:
-When declaring a method, does `static` come first, or does the visibility come first?
+声明方法时，`static` 在最前面，还是可见性在最前面？
 
 `control_space_parens`:
-In a control structure expression, is there a space after the opening parenthesis and a space before the closing parenthesis? `yes` = `if ( $expr )`, `no` = `if ($expr)`.
+在流程控制表达式中，左括号后和右括号前有没有空格？`yes` = `if ( $expr )`, `no` = `if ($expr)`.
 
 `blank_line_after_php`:
-Is there a blank line after the opening PHP tag?
+PHP 起始标签后有没有空行？
 
 `class_method_control_brace`:
-A summary of what line the opening braces go on for classes, methods, and control structures.
+类、方法、流程控制的左大花括号在哪一行的统计。
 
-### A.3. Survey Results
+### A.3. 调查结果
 
     indent_type:
         tab: 7

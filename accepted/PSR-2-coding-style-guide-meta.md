@@ -1,27 +1,24 @@
-# PSR-2 Meta Document
+# PSR-2 元文档
 
-## 1. Summary
+## 1. 概述
 
-The intent of this guide is to reduce cognitive friction when scanning code from different authors. It does so
-by enumerating a shared set of rules and expectations about how to format PHP code.
+本指南的目的是减少不同错误浏览代码时的认知分歧。这是通过列举一组有关如何格式化 PHP 代码的共享规则来实现的。
 
-The style rules herein are derived from commonalities among the various member projects. When various authors
-collaborate across multiple projects, it helps to have one set of guidelines to be used among all those
-projects. Thus, the benefit of this guide is not in the rules themselves, but in the sharing of those rules.
+本文中的风格规则来自于各个成员项目之间的共性。当不同的作者跨多个项目协作，在所有这些项目中使用一套指导原则
+是有帮助的。因此，本指南的好处不在于规则本身，而在于共享这些规则.
 
-## 2. Votes
+## 2. 投票
 
-- **Acceptance Vote:** [ML](https://groups.google.com/d/msg/php-fig/c-QVvnZdMQ0/TdDMdzKFpdIJ)
+- **接受投票：** [ML](https://groups.google.com/d/msg/php-fig/c-QVvnZdMQ0/TdDMdzKFpdIJ)
 
-## 3. Errata
+## 3. 勘误
 
-### 3.1 - Multi-line Arguments (09/08/2013)
+### 3.1 - 多行参数 (09/08/2013)
 
-Using one or more multi-line arguments (i.e: arrays or anonymous functions) does not constitute
-splitting the argument list itself, therefore Section 4.6 is not automatically enforced. Arrays and anonymous
-functions are able to span multiple lines.
+使用一个或多个多行参数（数组或匿名函数）并不构成对参数列表本身的拆分，因此 4.6 节不会自动执行。数组和匿名函
+数可以跨越多行。
 
-The following examples are perfectly valid in PSR-2:
+以下示例在 PSR-2 中完全合规：
 
 ~~~php
 <?php
@@ -34,7 +31,6 @@ $app->get('/hello/{name}', function ($name) use ($app) {
 });
 ~~~
 
-### 3.2 - Extending Multiple Interfaces (10/17/2013)
+### 3.2 - 扩展多个接口 (10/17/2013)
 
-When extending multiple interfaces, the list of `extends` should be treated the same as a list
-of `implements`, as declared in Section 4.1.
+在扩展多个接口时，对 `extends` 列表的处理**应当**与 4.1 节声明的对 `implements` 列表的处理方式相同。
