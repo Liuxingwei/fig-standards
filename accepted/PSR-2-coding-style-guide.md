@@ -6,15 +6,15 @@
 
 本指南扩展自 [PSR-1]（基本编码规范）。
 
-本指南的目的是减少不同错误浏览代码时的认知分歧。这是通过列举一组有关如何格式化 PHP 代码的
+本指南的目的是减少不同用户浏览代码时的认知分歧。这是通过列举一组有关如何格式化 PHP 代码的
 共享规则来实现的。
 
-本文中的风格规则来自于各个成员项目之间的共性。当不同的作者跨多个项目协作，在所有这些项目中使用一套指导原则
+本文中的风格规则来自于各个成员项目之间的共性。当不同的作者跨多个项目协作，在所有这些项目中使用同一套指导原则
 是有帮助的。因此，本指南的好处不在于规则本身，而在于共享这些规则.
 
 本文档中的 「必须（MUST）」、「不得（MUST NOT）」、「必须（REQUIRED）」、「必须（SHALL）」、
 「不得（SHALL NOT）」、「应当（SHOULD）」、「不应（SHOULD NOT）」、「推荐（RECOMMENDED）」、
-「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照照 [RFC 2119] 的说明进行解释。
+「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照 [RFC 2119] 的说明进行解释。
 
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
 [PSR-0]: https://github.com/liuxingwei/fig-standards/blob/master/accepted/PSR-0.md
@@ -22,24 +22,24 @@
 
 ## 1. 概述
 
-- 代码**必须**遵循「编码风格指南」规范 [[PSR-1]]。
+- 代码**必须**遵循「基本编码标准」[^译者注1]规范 [[PSR-1]]。
 
-- 代码**必须**使用 4 个空格缩进，不得使用制表符。
+- 代码**必须**使用 4 个空格缩进，**不得**使用制表符。
 
-- 行长**不得**有硬边界；软件边界**必须**是 120 个字符；每行**应当**少于或等于 80 个字符。
+- 行长**不得**有硬边界；软边界**必须**是 120 个字符；每行**应当**少于或等于 80 个字符。
 
 - `namespace` 声明后面**必须**跟一个空行，`use` 声明块的后面也**必须**跟一个空行。
 
-- 类的左大括号**必须**起始于一个新行，右大括号必须在代码体的下一行。
+- 类的左大花括号**必须**起始于一个新行，右大花括号**必须**在代码体的下一行。
 
-- 方法的左大括号**必须**起始于一个新行，右大括号必须在方法体的下一行。
+- 方法的左花大括号**必须**起始于一个新行，右花大括号**必须**在方法体的下一行。
 
 - 所有属性和方法**必须**声明可见性；`abstract` 和 `final` **必须**在可见性之前声明；`static` **必须**
 在可见性之后声明。
 
 - 流程控制关键诩后面**必须**有一个空格；方法和函数名后面**不得**有空格。
 
-- 流程控制的左大花括号**必须**和关键词在同一行，右大花括号必须在代码体的下一行。
+- 流程控制的左大花括号**必须**和关键词在同一行，右大花括号**必须**在代码体的下一行。
 
 - 流程控制的左大花括号后面**不得**空格，右大花括号的前面也**不得**有空格。
 
@@ -95,7 +95,7 @@ class Foo extends Bar implements FooInterface
 
 行长的软边界**必须**是 120 个字符；自动检查器对软件边界**必须**告警，但**不得**报错。
 
-行**不应**超过 80 个字符；长行**应当**被拆分成多个的行，每行不得超过 80 个字符。
+行**不应**超过 80 个字符；长行**应当**被拆分成多个连续的行，每行不得超过 80 个字符。
 
 非空行的末尾**不得**有尾空白。
 
@@ -109,7 +109,7 @@ class Foo extends Bar implements FooInterface
 
 
 > 注意：仅使用空格，不混用空格和制表符，有助于避免差异、补丁、历史和注释的问题。使用空格
-> 还能使得为对齐行插入细粒度的子缩进变得更容易。
+> 还能使得为行内对齐插入细粒度的子缩进变得更容易。
 
 ### 2.5. 关键词和 True/False/Null
 
@@ -145,7 +145,7 @@ use OtherVendor\OtherPackage\BazClass;
 
 ## 4. 类、属性和方法
 
-术语类泛指所有的类、接口和 traits。
+术语「类」泛指所有的类、接口和 traits。
 
 ### 4.1. Extends 和 Implements
 
@@ -255,7 +255,7 @@ class ClassName
 参数列表**可以**拆成多行，后续的每行要有一个缩进。这样做的时候，列表的第一个元素**必须**在
 下一行上，每个参数**必须**单独占一行。
 
-如果参数列表拆成多行时，右括号**必须**和左大花括号在同一行上，并且用一个空格分隔开。
+如果参数列表拆成多行，右括号**必须**和左大花括号在同一行上，并且用一个空格分隔开。
 
 ~~~php
 <?php
@@ -354,7 +354,7 @@ if ($expr1) {
 
 ### 5.2. `switch`、`case`
 
-`switch` 如下。注意括号、空格和大花括号的位置。`case` 语句**必须**相对 `switch` 缩进一次，
+`switch` 结构如下。注意括号、空格和大花括号的位置。`case` 语句**必须**相对 `switch` 缩进一次，
 `break` 关键诩（或者其它终止关键词）**必须**和同级别的 `case` 体保持相同的缩进。一个非空的故
 意要 fall-through 的 `case` 体**必须**有类似 `// no break` 的注释。
 
@@ -448,7 +448,7 @@ try {
 
 带有默认值的闭包方法参数**必须**在参数列表的最后。
 
-闭包声明如下。语句如下。注意括号、空格、逗号和大花括号的位置:
+闭包声明如下。注意括号、空格、逗号和大花括号的位置:
 
 ~~~php
 <?php
@@ -466,7 +466,7 @@ $closureWithArgsAndVars = function ($arg1, $arg2) use ($var1, $var2) {
 
 如果参数列表或变量列表拆成多行时，右括号**必须**和左大花括号在同一行上，并且用一个空格分隔开。
 
-下面是带有和不带有参数列表和變量列表，列表拆分成釣多行的示例
+下面是带有和不带有参数列表和變量列表，列表拆分成釣多行的示例：
 
 ~~~php
 <?php
@@ -546,11 +546,11 @@ $foo->bar(
 
 - 最佳实践
 
-建议未来**可以**修订和扩充本指南，以处理这些和另外的风格和实践要素。
+建议未来**可以**修订和扩充本指南，以处理这些和另外的风格与实践要素。
 
 ## 附录 A. 调查
 
-在编写本风格指南时，该小组对成员项目进行了调查，以确定常见做法。此项调查留在这儿，可以为后来者所用。
+在编写本风格指南时，小组对成员项目进行了调查，以确定常见做法。此项调查留在这儿，可以为后来者所用。
 
 ### A.1. 调查数据
 
@@ -580,67 +580,67 @@ $foo->bar(
 
 ### A.2. 调查解读
 
-`indent_type`:
+`indent_type`：
 缩进风格。 `tab` = "使用一个制表符"， `2` 或 `4` = "空格个数"
 
-`line_length_limit_soft`:
+`line_length_limit_soft`：
 行长的软边界，以字符为单位。 `?` = 无法识别或无响应， `no` 意为无限制。
 
-`line_length_limit_hard`:
+`line_length_limit_hard`：
 行长的硬边界，以字符为单位。 `?` = 无法识别或无响应， `no` 意为无限制。
 
-`class_names`:
+`class_names`：
 类如何命名。 `lower` = 仅有小写字母， `lower_under` = 小写字母加下载划间隔， `studly` = StudlyCase。
 
-`class_brace_line`:
+`class_brace_line`：
 `same` 表示 左大花括号与 class 关键字在同一行，`next` 则表示另起新行。
 
-`constant_names`:
+`constant_names`：
 常量如何命名？ `upper` = 大写并带有下划线间隔。
 
-`true_false_null`:
+`true_false_null`：
 `true`、`false` 和 `null` 关键字是用 `lower` （小写字母），还是全部 `upper` （大写字母）？
 
-`method_names`:
+`method_names`：
 方法如何命名？ `camel` = `camelCase`， `lower_under` = 小写字母并带有下划线间隔。
 
-`method_brace_line`:
+`method_brace_line`：
 `same` 表示左大花括号与 method 在同一行，`next` 表示另起新行。
 
-`control_brace_line`:
+`control_brace_line`：
 `same` 表示左大花括号与流程控制关键字同行，`next` 表示另起新行。
 
-`control_space_after`:
+`control_space_after`：
 流程控制关键字后面有没有空格？
 
-`always_use_control_braces`:
+`always_use_control_braces`：
 流程控制总是使用大花括号？
 
-`else_elseif_line`:
+`else_elseif_line`：
 使用 `else` 或 `elseif` 的时候， `same` 表示和前面的右花括号同行，`next` 表示另起新行。
 
-`case_break_indent_from_switch`:
+`case_break_indent_from_switch`：
 相对于 `switch`，`case` 和 `break` 缩进几次？
 
-`function_space_after`:
+`function_space_after`：
 函数调用时，函数名后面和左括号前面是否有空格？
 
-`closing_php_tag_required`:
+`closing_php_tag_required`：
 仅包含 PHP 的文件，关闭标签 `?>` 是否必须？
 
-`line_endings`:
+`line_endings`：
 使用哪种行结束风格？
 
-`static_or_visibility_first`:
-声明方法时，`static` 在最前面，还是可见性在最前面？
+`static_or_visibility_first`：
+声明方法时，`static` 在前面，还是可见性在前面？
 
-`control_space_parens`:
+`control_space_parens`：
 在流程控制表达式中，左括号后和右括号前有没有空格？`yes` = `if ( $expr )`, `no` = `if ($expr)`.
 
-`blank_line_after_php`:
+`blank_line_after_php`：
 PHP 起始标签后有没有空行？
 
-`class_method_control_brace`:
+`class_method_control_brace`：
 类、方法、流程控制的左大花括号在哪一行的统计。
 
 ### A.3. 调查结果
@@ -725,3 +725,5 @@ PHP 起始标签后有没有空行？
         next/next/same: 11
         next/same/same: 1
         same/same/same: 6
+
+[^译者注1]:此处原文为**编码风格指南（Coding style guide）**，链接指向的是**基本编码标准（Basic coding standard）**
