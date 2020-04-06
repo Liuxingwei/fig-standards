@@ -10,7 +10,7 @@
 
 | 序号 | 标题                | 作者                             | 协调人                     | 提案人                     |
 |----|-------------------|--------------------------------|-------------------------|-------------------------|
-| 1  | [基本缟码规范][psr1]    | Paul M. Jones                  | _N/A_                   | _N/A_                   |
+| 1  | [基本缟码标准][psr1]    | Paul M. Jones                  | _N/A_                   | _N/A_                   |
 | 3  | [日志接口][psr3]      | Jordi Boggiano                 | _N/A_                   | _N/A_                   |
 | 4  | [自动加载规范][psr4]    | Paul M. Jones                  | Phil Sturgeon           | Larry Garfield          |
 | 6  | [缓存接口][psr6]      | Larry Garfield                 | Paul Dragoonis          | Robert Hafner           |
@@ -51,7 +51,7 @@
 | 序号 | 标题                  | 作者                             | 状态 |
 |----|---------------------|--------------------------------|----|
 | 0  | [自动加载规范][psr0]      | Matthew Weier O'Phinney        | 弃用 |
-| 1  | [基本缟码规范][psr1]      | Paul M. Jones                  | 接受 |
+| 1  | [基本缟码标准][psr1]      | Paul M. Jones                  | 接受 |
 | 2  | [代码风格指南][psr2]      | Paul M. Jones                  | 弃用 |
 | 3  | [日志接口][psr3]        | Jordi Boggiano                 | 接受 |
 | 4  | [自动加载规范][psr4]      | Paul M. Jones                  | 接受 |
