@@ -1,99 +1,77 @@
-Extended Coding Style Guide Meta Document
+扩展编码风格指南元文档
 =========================================
 
-# 1. Summary
+# 1. 概述
 
-This document describes the process and discussions that led to the Extended Coding
-Style PSR. Its goal is to explain the reasons behind each decision.
+本文档描述了引出扩展编码风格规范的过程和讨论。其目的是解释每个决定背后的原因。
 
-# 2. Why Bother?
+# 2. 何必这样？
 
-PSR-2 was accepted in 2012 and since then a number of changes have been made to PHP,
-most notably recent changes for PHP 7, which have implications for coding style
-guidelines. Whilst PSR-2 is very comprehensive of PHP functionality that existed at
-the time of writing, new functionality is very open to interpretation. PSR-12 seeks
-to provide a set way that both coding style tools can implement, projects can declare
-adherence to and developers can easily relate on between different projects for these
-coding style reducing cognitive friction.
+PSR-2 是 2012 年被接受的，那以后 PHP 有了很多对编码风格的指导有影响的变动，最显著的是 PHP 7 的变动。
+在编写 PS$-2 的时候，对 PHP 已有功能的覆盖是很全面的，对新功能的解释则很开放。PSR-12 试图提供一组编码
+风格工具能实现的，项目声明遵守，程序员能轻易地将不同项目关联起来的编码风格，以降低认知分歧。
 
-PSR-2 was created based upon the common practices of the PHP-FIG projects at the time
-but ultimately this meant it was a compromise of many of the different projects' guidelines.
-The repercussions of projects changing their coding guidelines to align with PSR-2 (Almost
-all projects do align with PSR-1, even if it is not explicitly stated) were seen to be too
-great (losing git history, huge changesets and breaking existing patches/pull requests).
+PSR-2 是基于目前的 PHP-FIG 项目实践创建的，但这也意味着它是不同项目指导原则的折衷。修改编码指导原则以与
+PSR-2 保持一致（几乎所有项目都与 PSR-1 保持一致，即使它没有明确说明）被认为影响过大（丢失历史、庞大的变
+更集、破坏现在的更新/推送请求）。
 
-PSR-2 required adopters to reformat large amounts of existing code which stifled adoption.
-To help alleviate this issue with PSR-12, we have taken a more prescriptive approach and
-defined the standards for new language features as they are released.
+PSR-2 让采用该规范的用户格式化大量的已有代码的要求阻碍了其被更广泛地采用。为帮助 PSR-12 缓解此问题，我们
+采用了更规范的方法，并在新的语言特性发布时定义了相关标准。
 
-However it is for a lack of wanting to be dictatorial that we will aim to apply PSR-2
-styling, rationale and stances (Described in Section 4, Approaches) in PSR-12 instead of
-establishing new conventions.
+不过，我们的目标是在 PSR-12 中应用 PSR-2 的风格、原理和立场（见第四小节「方法」），而不是武断地建立新规约。
 
-# 3. Scope
 
-## 3.1. Goals
+# 3. 范围
 
-This PSR shares the same goals as PSR-2.
+## 3.1. 目标
 
-> The intent of this guide is to reduce cognitive friction when scanning code from
-> different authors. It does so by enumerating a shared set of rules and expectations
-> about how to format PHP code.
-> When various authors collaborate across multiple projects, it helps to have one set
-> of guidelines to be used among all those projects. Thus, the benefit of this guide is
-> not in the rules themselves, but in the sharing of those rules.
+本规范的目标与 PSR-2 相同。
 
-This PSR is an extension of PSR-2, and therefore also an extension of PSR-1. The basis of
-PSR-12 is PSR-2 and therefore a list of differences is provided below to assist with migration
-but it should be considered as an independent specification.
+>本指南的目的是减少不同用户浏览代码时的认知分歧。这是通过列举一组有关如何格式化 PHP 代码的共享规则来实现的。
+>
+>本文中的风格规则来自于各个成员项目之间的共性。当不同的作者跨多个项目协作，在所有这些项目中使用一套指导原则
+>是有帮助的。因此，本指南的好处不在于规则本身，而在于共享这些规则.
 
-This PSR will include coding style guidelines related to new functionality added to PHP
-after the publication of PSR-2; this includes PHP 5.5, PHP 5.6 and PHP 7.0. This PSR will
-also include clarifications on the text of PSR-2, as described in the PSR-2 Errata.
+本规范是 PSR-2 的扩展，自然也是 PSR-1 的扩展。PSR-12 的基础是 PSR-2，所以下面提供了差异列表来为从 PSR-2
+迁移提供帮助，但 PSR-12 应被视作独立的规范。
 
-## 3.2. Non-Goals
+本规范将包含与 PSR-2 规范发布之后添加到 PHP（包括PHP 5.5、PHP 5.6、PHP 7）的新特性相关的编码风格指导原
+则。如 PSR-2 勘误表所述，本规范还包含对 PSR-2 文本的澄清。
 
-It is not the intention of this PSR to add entirely new coding style guidelines. PSR-12 will
-also not change anything stipulated in PSR-1 and PSR-2.
+## 3.2. 目标之外
 
-# 4. Approaches
+本规范的目标不是添加全新的编码风格指南，它也不改变 PSR-1 和 PSR-2 的任何约定。
 
-The overarching approach is to attempt to apply existing PSR-2 styling and rationale to
-new functionality as opposed to establishing new conventions.
+# 4. 方法
 
-## 4.1. Strict Types Declarations
+总的原则是尝试在新功能上应用已有的 PSR-2 风格和基本原则，而不是建立新规约。
 
-There was a discussion about whether or not strict types should be enforced in the standard
-https://github.com/cs-extended/fig-standards/issues/7. All were in agreement we should only
-use a MUST or MUST NOT statement and avoid the use of a SHOULD statement and nobody wanted
-to say that strict types could not be declared. The discussion was whether it should be
-considered a coding style item which should be covered or whether it was out of scope and it
-was decided to be out of scope of a coding style guide.
+## 4.1. 严格类型声明
 
-## 4.2. Finally and Return Types Declaration Spacing
+https://github.com/cs-extended/fig-standards/issues/7 上有关于是否应该强制执行严格类型声明的讨论。
+所有人都同意应该只使用**必须**或**不得**字样，避免使用**应该**字样，没有人想说不能声明严格类型。该讨论针对
+的是它是否应被视为编码风格样式应该覆盖的部分，还是已经超出了范围。最终认定它已经超出了编码风格指南的范围。
 
-Numerous different options were suggested and they can be seen
-[here for return type declarations](https://gist.github.com/michaelcullum/c025f3870c9ea1dd2668#file-returntypesspacing-php) or
-[here for finally blocks](https://gist.github.com/michaelcullum/c025f3870c9ea1dd2668#file-finallyblocks-php)
-and the current implementation was chosen due to consistency with other parts of the PSR-12
-specification that came from PSR-2.
+## 4.2. Finally 和 Return 类型声明的留白
 
-## 4.3. Enforcing short form for all type keywords
+能在[返回类型声明](https://gist.github.com/michaelcullum/c025f3870c9ea1dd2668#file-returntypesspacing-php)
+或[ Finally 块](https://gist.github.com/michaelcullum/c025f3870c9ea1dd2668#file-finallyblocks-php)
+找到许多不同的推荐选项，当前的实现是来自 PSR-2 的与 PSR-12 的其它部分一致的选择。
 
-PHP 7.0 introduced [scalar types declaration](http://php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration)
-which does not support long type aliases. Therefore it makes sense to enforce primary short type forms to be used to
-have uniform syntax and prevent possible confusion.
+## 4.3. 强制所有类型关键字使用短格式
 
-## 4.4. Public Survey
+PHP 7.0 引入不支持长类型别名的[ 标量类型声明 ](http://php.net/manual/zh/functions.arguments.php#functions.arguments.type-declaration)。
+因此强制使用主要的短类型格式以获得统一的语法，并防止可能的混淆是有意义的。
 
-In order to settle things using data, survey was conducted and responses from 142 people
-including 17 project representatives were gathered:
+## 4.4. 民意调查
 
-### 4.4.1. PHP-FIG Representative Results
+为借助数据解决问题而进行的调查，收集到了142个人（包括17名项目代表）的回复：
 
-| Representative          | Project           | Compound namespaces with a depth of two or more MUST not be used | Header statement grouping and ordering | Declare statements must each be on their own line | Declare statements in PHP files containing markup | Declare statements have no spaces: `declare(strict_types=1);` | Block declare statement formatting | `new` keyword usage, parenthesis required |Return type declaration formatting |Use statement leading slashes disallowed | Block namespace declaration formatting | General operator spacing |Try, Catch, Finally formatting | Anonymous class declaration formatting | Keyword casing, only lower case | Type keywords, short form only |
+### 4.4.1. PHP-FIG 代表的反馈结果
+
+| 代表          | 项目           | **不得**使用深度为两个或更多个的复合命名空间 | Header 语句分组和排序 | Declare 语句必须单一且独占一行 | PHP 文件中的 Declare 语句包含标记 | Declare 语句没有空格： `declare(strict_types=1);` | 声明语句块格式化 | 使用关键词 `new` 必须带括号 | 返回类型定义格式化 | Use 语句不允许斜杠开头 | 命名空间声明块格式化 | 常规运算符留白 | Try, Catch, Finally 格式化 | 匿名类声明格式化 | 关键词小写 | 仅使用类型关键词的短形式 |
 | --------------          | -------           | ---------------------------------------------------- | ---------------------------------- | ----------------------------------------- | ------------------------------------------- | -------------------------------------------------------- | ------------------------------- | ------------------------------------- |------------------------------- |------------------------------------ | ----------------------------------- | ---------------------- |--------------------------- | ----------------------------------- | --------------------------- | -------------------------- |
-| Alexander Makarov       |  Yii framework    | ✓ | ✓ | ✓ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Alexander Makarov       | Yii framework    | ✓ | ✓ | ✓ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Korvin Szanto           | concrete5         | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Leo Feyer               | Contao            | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Larry Garfield          | Drupal            | ✓ | ✓ | ✓ | ✓ | ✓ | ❌ | ✓ | ✓ | ✓ | ❌ | ✓ | ✓ | ❌ | ✓ | ✓ |
@@ -109,103 +87,98 @@ including 17 project representatives were gathered:
 | Jordi Boggiano          | Composer          | ❌ | ❌ | ❌ | ✓ | ✓ | ✓ | ❌ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Ben Marks               | Magento           | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Chuck Burgess           | PEAR              | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-|                         | **Totals**:       |13/3|15/1|15/1|13/3|14/2|15/1|14/2|15/1|14/2|14/2|15/1|16/0|15/1|15/1|15/1|
+|                         | **汇总**:       |13/3|15/1|15/1|13/3|14/2|15/1|14/2|15/1|14/2|14/2|15/1|16/0|15/1|15/1|15/1|
 
-### 4.4.2. General non-representative voters
+### 4.4.2. 一般非代表受访者
 
-| Question | For | Against | Percentage For |
+| 问题 | 同意 | 反对 | 赞成百分比 |
 | -------- | --- | ------- | -------------- |
-| Compound namespaces required depth | 114 | 12 | 89.47% |
-| Header statement grouping and ordering | 113 | 13 | 88.5% |
-| Declare statements must each be on their own line | 120 | 6 | 95% |
-| Declare statements in PHP files containing markup | 119 | 7 | 94.12% |
-| Declare statements have no spaces | 116 | 10 | 91.38% |
-| Block declare statement formatting | 118 | 8 | 93.22% |
-| `new` keyword usage, parenthesis required | 116 | 10 | 91.38% |
-| Return type declaration formatting | 115 | 11 | 90.43% |
-| Use statement leading slashes disallowed | 118 | 8 | 93.22% |
-| Block namespace declaration formatting | 120 | 6 | 95% |
-| General operator spacing | 123 | 3 | 97.56% |
-| Try, Catch, Finally formatting | 124 | 2 | 98.39% |
-| Anonymous class declaration formatting | 117 | 9 | 92.31% |
-| Keyword casing, only lower case | 124 | 2 | 98.39% |
-| Type keywords, short form only | 121 | 5 | 95.87% |
+| 复合命名空间所需深度 | 114 | 12 | 89.47% |
+| Header 语句分组和排序 | 113 | 13 | 88.5% |
+| Declare 语句必须单一且独占一行 | 120 | 6 | 95% |
+| PHP 文件中的 Declare 语句包含标记 | 119 | 7 | 94.12% |
+| Declare 语句没有空格 | 116 | 10 | 91.38% |
+| Declare 语句块格式化 | 118 | 8 | 93.22% |
+| 使用关键词 `new` 必须带括号 | 116 | 10 | 91.38% |
+| 返回类型定义格式化 | 115 | 11 | 90.43% |
+| Use 语句不允许斜杠开头 | 118 | 8 | 93.22% |
+| 命名空间声明块格式化 | 120 | 6 | 95% |
+| 常规运算符留白 | 123 | 3 | 97.56% |
+| Try, Catch, Finally 格式化 | 124 | 2 | 98.39% |
+| 匿名类声明格式化 | 117 | 9 | 92.31% |
+| 关键词小写 | 124 | 2 | 98.39% |
+| 仅使用类型关键词的短形式 | 121 | 5 | 95.87% |
 
-## 4.5. Multiline Function Arguments Mixed With Multiline Return
+## 4.5. 函数参数多行和返回值多行的混合
 
-A potential readability issue [was raised on the mailing list](https://groups.google.com/d/msg/php-fig/ULSL4gqK8GY/cgDELuPOCQAJ).
-We reviewed options for changes to the specification that could provide better readability and
-the floated option was to require a blank line after the opening bracket of a function if the
-arguments and the return are both multiline. Instead it was pointed out that this specification
-_already_ allows you to decide where you'd like to add blank lines and so we will leave it to
-the implementors to decide.
+[邮件列表](https://groups.google.com/d/msg/php-fig/ULSL4gqK8GY/cgDELuPOCQAJ)提出了一个潜在的可读性问题。
+我们重新审视了那些能够提供更好可读性的规范变更，未定的选项是如果参数和返回值均为多行，则函数的左括号后需要一个空行。
+有人指出规范 _已经_ 允许你决定如何添加空行，所以我们把它留给实现者自行决断。
 
-# 5. Changelog from PSR-2
+# 5. 自 PSR-2 之后的变更日志
 
-Please note this changelog is not a verbose list of changes from PSR-2 but highlights the most
-notable changes. It should be considered a new specification and therefore you should read the
-specification for a full understanding of its contents.
+请注意，此变更日志不是自 PSR-2 之后的详细变化列表，但突出显示了最显著的变化。它应该被视为新的规范，你应该阅读该规范并完全领会其内容。
 
-## 5.1. New Statements
+## 5.1. 新术语
 
-* Lowercase for all keywords - Section 2.5
-* Short form for all type keywords - Section 2.5
-* Use statement grouping - Section 3
-* Use statement blocks - Section 3
-* Declare statement/Strict types declaration usage - Section 3
-* Parentheses are always required for class instantiation - Section 4
-* Typed properties - Section 4.3
-* Return type declarations - Section 4.5
-* Variadic and reference argument operators - Section 4.5
-* Type hints - Section 4.5
-* Add finally block - Section 5.6
-* Operators - Section 6
-* Unary operators - Section 6.1
-* Binary operators - Section 6.2
-* Ternary operators - Section 6.3
-* Anonymous classes - Section 8
+* 全部关键词小写 - 2.5节
+* 类型关键词短格式 - 2.5节
+* Use 语句分组 - 第3节
+* Use 语句块 - 第3节
+* Declare 语句/Strict 类型声明用法 - 第3节
+* 类实例化总是带有括号 - 第4节
+* 类型属性 - 4.3节
+* 返回类型声明 - 4.5节
+* 变量和引用参数运算符 - 4.5节
+* 类型提示 - 4.5节
+* 添加 finally 块- 5.6节
+* 运算符 - 第6节
+* 一元运算符 - 6.1节
+* 二元运算符 - 6.2节
+* 三元运算符 - 6.3节
+* 匿名类 - 第8节
 
-## 5.2. Clarifications and Errata
+## 5.2. 澄清和勘误
 
-* Adjust 'methods' to 'methods and functions' in a number of instances - Throughout
-* Adjust references to classes and interfaces to also include traits - Throughout
-* StudlyCaps meaning clarified as PascalCase - Section 2.1
-* The last line should not be blank but contain an EOL character - Section 2.2
-* Blank lines may be added for readability except where explicitly forbidden within the PSR - Section 2.3
-* PSR-2 errata statement about multi-line arguments - Section 4
-* PSR-2 errata statement about extending multiple interfaces - Section 4
-* Forbid blank lines before/after closing/opening braces for classes - Section 4
+* 将'方法'调整为'方法和函数' - 通篇
+* 类和接口引用调整为包括 traits - 通篇
+* StudlyCaps 指的就是 PascalCase - 2.1节
+* 最后一行不应为空，但应包含行结束符 - 2.2节
+* 除 PSR 明确禁止的情况外，可以添加空行以提高可读性 - 2.3节
+* PSR-2 关于多行参数的勘误 - 第4节
+* PSR-2 关于扩展多个接口的勘误 - 第4节
+* 类的右大花括号之前/左大花括号之后禁止有空行 - 第4节
 
-# 6. People
+# 6. 人员
 
-## 6.1.  Editor:
+## 6.1.  编辑:
 * Korvin Szanto
 
-## 6.2. Sponsor:
+## 6.2. 担保人:
 
 * Chris Tankersley
 
-## 6.3. Working Group Members:
+## 6.3. 工作组成员：
 
 * Alessandro Lai
 * Alexander Makarov
 * Michael Cullum
 * Robert Deutz
 
-## 6.4. Special Thanks
+## 6.4. 特别感谢
 
-* Michael Cullum for drafting the original specification
-* Alexandar Makarov for coordinating the draft during PHP-FIG 2.0
-* Cees-Jan Kiewiet for moral support
+* Michael Cullum 起草了原始规范
+* Alexandar Makarov 协调 PHP-FIG 2.0 草稿
+* Cees-Jan Kiewiet 提供精神支持
 
-# 7. Votes
+# 7. 投票
 
 * **Entrance Vote:** https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/php-fig/P9atZLOcUBM/_jwkvlYKEAAJ
 * **Approval Vote:** https://groups.google.com/forum/#!topic/php-fig/1uaeSMaDGbk
 
-# 8. Relevant Links
+# 8. 相关链接
 
-_**Note:** Order descending chronologically._
+_**注意：**_ 按时间倒序排列
 
-* [Inspiration Mailing List Thread](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/php-fig/wh9avopSR9k)
-* [Initial Mailing List PSR Proposal Thread](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/php-fig/MkFacLdfGso)
+* [灵感来源邮件列表线程](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/php-fig/wh9avopSR9k)
+* [初始邮件列表 PSR 建议线程](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!topic/php-fig/MkFacLdfGso)
