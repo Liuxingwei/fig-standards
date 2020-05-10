@@ -1,40 +1,31 @@
-# Extended Coding Style Guide
+# 扩展编码风格指南
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119][].
+本文档中的 「必须（MUST）」、「不得（MUST NOT）」、「必须（REQUIRED）」、「必须（SHALL）」、
+「不得（SHALL NOT）」、「应当（SHOULD）」、「不应（SHOULD NOT）」、「推荐（RECOMMENDED）」、
+「可以（MAY）」和「可选（OPTIONAL）」等关键词应遵照照 [RFC 2119] 的说明进行解释。
 
 [RFC 2119]: http://tools.ietf.org/html/rfc2119
 
-## Overview
+## 概述
 
-This specification extends, expands and replaces [PSR-2][], the coding style guide and
-requires adherence to [PSR-1][], the basic coding standard.
+本规范继承、扩展和取代 [PSR-2]（编码风格指南），并且要求遵循 [PSR-1]（基本编码标准）。
 
-Like [PSR-2][], the intent of this specification is to reduce cognitive friction when
-scanning code from different authors. It does so by enumerating a shared set of rules
-and expectations about how to format PHP code. This PSR seeks to provide a set way that
-coding style tools can implement, projects can declare adherence to and developers
-can easily relate to between different projects. When various authors collaborate
-across multiple projects, it helps to have one set of guidelines to be used among
-all those projects. Thus, the benefit of this guide is not in the rules themselves
-but the sharing of those rules.
+像 [PSR-2][] 一样，本规范致力于缩小扫描不同作者的代码时的认知分歧。这是通过列举一组如何格式化 PHP
+代码的共享规则来实现的。 此 PSR 试图提供一组编码风格工具能实现的、项目能声明遵守的、开发者能方便地在
+不同项目间关联的方法。 当不同的作者跨项目合作时，所有项目共用一组指导原则是有帮助的。因此，本指南的好
+处不是规则自身，而是共享这些规则。
 
-[PSR-2][] was accepted in 2012 and since then a number of changes have been made to PHP
-which has implications for coding style guidelines. Whilst [PSR-2] is very comprehensive
-of PHP functionality that existed at the time of writing, new functionality is very
-open to interpretation. This PSR, therefore, seeks to clarify the content of PSR-2 in
-a more modern context with new functionality available, and make the errata to PSR-2
-binding.
+自2012年 [PSR-2][] 被接受以来， PHP 有了一些影响到编码风格指导原则的改变。但在起草的时候，但在起草
+的时候，[PSR-2] 几乎涵盖了 PHP 全部已有功能，新功能阐述很开放。因此，本规范试图在拥有可用新功能的新
+背景下阐述 PSR-2,并对 PSR-2 进行订正。
 
-### Previous language versions
+### 上一个语言版本
 
-Throughout this document, any instructions MAY be ignored if they do not exist in versions
-of PHP supported by your project.
+本文档中所有不为你的项目支持的 PHP 版本的内容，都可以忽略。
 
-### Example
+### 示例
 
-This example encompasses some of the rules below as a quick overview:
+本例包含了下文规则的快速预览：
 
 ~~~php
 <?php
@@ -70,82 +61,70 @@ class Foo extends Bar implements FooInterface
 }
 ~~~
 
-## 2. General
+## 2. 总则
 
-### 2.1 Basic Coding Standard
+### 2.1 基本编码标准
 
-Code MUST follow all rules outlined in [PSR-1].
+代码**必须**完全遵守 [PSR-1] 的全部规则。
 
-The term 'StudlyCaps' in PSR-1 MUST be interpreted as PascalCase where the first letter of
-each word is capitalized including the very first letter.
+PSR-1 中术语 'StudlyCaps' **必须** 解析为 PascalCase：包括第一个字母在内的每个单词的首字母大写。
 
-### 2.2 Files
+### 2.2 文件
 
-All PHP files MUST use the Unix LF (linefeed) line ending only.
+所有 PHP 文件**必须*“ 仅使用 Unix LF（换行符）作为行结束符。
 
-All PHP files MUST end with a non-blank line, terminated with a single LF.
+所有 PHP 文件**必须**以使用单个 LF 结束的非空白行结尾。
 
-The closing `?>` tag MUST be omitted from files containing only PHP.
+仅包含 PHP 的文件必须省略 `?>` 标签。
 
-### 2.3 Lines
+### 2.3 行
 
-There MUST NOT be a hard limit on line length.
+行长**不得**有硬界限。
 
-The soft limit on line length MUST be 120 characters.
+行长的软限制必须是 120 个字符。
 
-Lines SHOULD NOT be longer than 80 characters; lines longer than that SHOULD
-be split into multiple subsequent lines of no more than 80 characters each.
+行**不应**超过80个字符；过长的行**应当**拆分成多个连续的不超过80个字符的行。
 
-There MUST NOT be trailing whitespace at the end of lines.
+行尾**不得**有尾空白。
 
-Blank lines MAY be added to improve readability and to indicate related
-blocks of code except where explicitly forbidden.
+**可以**添加空行，以增加可读性，或者标示出（内容自）相关的代码块（明文禁止的情况除外）。
 
-There MUST NOT be more than one statement per line.
+每行**不得**超过一个语句。
 
-### 2.4 Indenting
+### 2.4 缩进
 
-Code MUST use an indent of 4 spaces for each indent level, and MUST NOT use
-tabs for indenting.
+代码中每级缩进**必须**为4个空格，**不得**使用制表符。
 
-### 2.5 Keywords and Types
+### 2.5 关键字和类型
 
-All PHP reserved keywords and types [[1]][keywords][[2]][types] MUST be in lower case.
+所有 PHP 保留关键字和类型 [[1]][keywords][[2]][types] **必须**使用小写字母。
 
-Any new types and keywords added to future PHP versions MUST be in lower case.
+PHP 未来版本中新增的类型和关键字也**必须**使用小写字母。
 
-Short form of type keywords MUST be used i.e. `bool` instead of `boolean`,
-`int` instead of `integer` etc.
+类型关键字必须使用短格式，比如用 `bool` 而不使用 `boolean`，使用 `int` 而不使用 `integer` 等等。
 
-## 3. Declare Statements, Namespace, and Import Statements
+## 3. Declare 语句， Namespace 和 Import 语句
 
-The header of a PHP file may consist of a number of different blocks. If present,
-each of the blocks below MUST be separated by a single blank line, and MUST NOT contain
-a blank line. Each block MUST be in the order listed below, although blocks that are
-not relevant may be omitted.
+PHP 文件头可以由几个不同的块构成。块**必须**用单个空行分隔，每个块**不得**包含空行。
+块**必须**按如下顺序排列，不过不需要的块可以省略。
 
-* Opening `<?php` tag.
-* File-level docblock.
-* One or more declare statements.
-* The namespace declaration of the file.
-* One or more class-based `use` import statements.
-* One or more function-based `use` import statements.
-* One or more constant-based `use` import statements.
-* The remainder of the code in the file.
+* 起始的 `<?php` 标签。
+* 文件级文档块。
+* 一个或多个 declare 语句。
+* 文件的 Namespace 声明。
+* 一个或多个基于类的 `use` 导入语句。
+* 一个或名个基于函数的 `use` 导入语句。
+* 一个或多个基于常量的 `use` 导入语句。
+* 文件中的其余代码。
 
-When a file contains a mix of HTML and PHP, any of the above sections may still
-be used. If so, they MUST be present at the top of the file, even if the
-remainder of the code consists of a closing PHP tag and then a mixture of HTML and
-PHP.
+当文件同时包含 HTML 和 PHP，上面的成分仍然可用。这种情况下，必须将它们放在文件最开头，并且剩余的代码由
+PHP 关闭标签和混合的 HTML 和 PHP 构成。
 
-When the opening `<?php` tag is on the first line of the file, it MUST be on its
-own line with no other statements unless it is a file containing markup outside of PHP
-opening and closing tags.
+如果 `<?php` 标签在文件的第一行，它**必须**单独占一行，除非这是一个包含 PHP 开关标签之外的标记的文件。
 
-Import statements MUST never begin with a leading backslash as they
-must always be fully qualified.
+导入语句**必须**从不用前导斜线，且必须总是完全合规。
 
-The following example illustrates a complete list of all blocks:
+下面的例子包含了列表中的全部代码块：
 
 ~~~php
 <?php
@@ -178,8 +157,8 @@ class FooBar
 
 ~~~
 
-Compound namespaces with a depth of more than two MUST NOT be used. Therefore the
-following is the maximum compounding depth allowed:
+合成命名空间的深度**不得**超过丙层。下面的代码片段是允许的最大合成深度：
+
 ~~~php
 <?php
 
@@ -191,7 +170,7 @@ use Vendor\Package\SomeNamespace\{
 };
 ~~~
 
-And the following would not be allowed:
+下面的代码示例是不允许的：
 
 ~~~php
 <?php
@@ -203,11 +182,10 @@ use Vendor\Package\SomeNamespace\{
 };
 ~~~
 
-When wishing to declare strict types in files containing markup outside PHP
-opening and closing tags, the declaration MUST be on the first line of the file
-and include an opening PHP tag, the strict types declaration and closing tag.
+如果想在 PHP 开始和结束标记中包含严格类型声明，则开始标记、严格类型声明和结束标记**必须**在文件的第一行。
 
-For example:
+例如：
+
 ~~~php
 <?php declare(strict_types=1) ?>
 <html>
@@ -219,44 +197,37 @@ For example:
 </html>
 ~~~
 
-Declare statements MUST contain no spaces and MUST be exactly `declare(strict_types=1)`
-(with an optional semi-colon terminator).
+Declare 语句**不得**包含空白，且**必须**是 `declare(strict_types=1)` （分号是可选的）。
 
-Block declare statements are allowed and MUST be formatted as below. Note position of
-braces and spacing:
+允许使用 declare 语句块，但必须是如下格式。注意大花括号和留白的位置：
+
 ~~~php
 declare(ticks=1) {
     // some code
 }
 ~~~
 
-## 4. Classes, Properties, and Methods
+## 4. 类、属性和方法
 
-The term "class" refers to all classes, interfaces, and traits.
+术语 "类" 包括类、接口和 traits。
 
-Any closing brace MUST NOT be followed by any comment or statement on the
-same line.
+注释和语句**不得**与右大花括号在同一行。
 
-When instantiating a new class, parentheses MUST always be present even when
-there are no arguments passed to the constructor.
+实例化一个类时，即使不需要向构造函数传递参数，括号也是**必须**的。
 
 ~~~php
 new Foo();
 ~~~
 
-### 4.1 Extends and Implements
+### 4.1 Extends 和 Implements
 
-The `extends` and `implements` keywords MUST be declared on the same line as
-the class name.
+关键字 `extends` 和 `implements` 声明**必须**和类名在同一行。
 
-The opening brace for the class MUST go on its own line; the closing brace
-for the class MUST go on the next line after the body.
+类的左大花括号**必须**单独占一行；右大花括号**必须**在代码体的下一行。
 
-Opening braces MUST be on their own line and MUST NOT be preceded or followed
-by a blank line.
+左大花括号的前后**不得**有空行。
 
-Closing braces MUST be on their own line and MUST NOT be preceded by a blank
-line.
+右大花括号前**不得**有空行。
 
 ~~~php
 <?php
@@ -273,10 +244,8 @@ class ClassName extends ParentClass implements \ArrayAccess, \Countable
 }
 ~~~
 
-Lists of `implements` and, in the case of interfaces, `extends` MAY be split
-across multiple lines, where each subsequent line is indented once. When doing
-so, the first item in the list MUST be on the next line, and there MUST be only
-one interface per line.
+`implements` 和接口中的 `extends` 列表**可以**拆分为多行，每个后续行有一个缩进。这种情况下，
+列表的第一个元素**必须**在下一行，**并且每行一个接口。
 
 ~~~php
 <?php
@@ -296,10 +265,9 @@ class ClassName extends ParentClass implements
 }
 ~~~
 
-### 4.2 Using traits
+### 4.2 使用 traits
 
-The `use` keyword used inside the classes to implement traits MUST be
-declared on the next line after the opening brace.
+类中用于实现 traits 的 `use` 关键字**必须**在左大花括号的下一行声明。
 
 ~~~php
 <?php
@@ -314,8 +282,7 @@ class ClassName
 }
 ~~~
 
-Each individual trait that is imported into a class MUST be included
-one-per-line and each inclusion MUST have its own `use` import statement.
+导入到类的每个 trait **必须**单独占一行，且**必须**使用独立的 `use` 语句。
 
 ~~~php
 <?php
@@ -334,8 +301,7 @@ class ClassName
 }
 ~~~
 
-When the class has nothing after the `use` import statement, the class
-closing brace MUST be on the next line after the `use` import statement.
+如果一个类的 `use` 导入语句后没有任何内容，类的右大花括号**必须** 在 `use` 语句的下一行。
 
 ~~~php
 <?php
@@ -350,7 +316,7 @@ class ClassName
 }
 ~~~
 
-Otherwise, it MUST have a blank line after the `use` import statement.
+其他情况下， `use` 后面**必须**有一个空行。
 
 ~~~php
 <?php
@@ -367,8 +333,7 @@ class ClassName
 }
 ~~~
 
-When using the `insteadof` and `as` operators they must be used as follows taking
-note of indentation, spacing, and new lines.
+`insteadof` 和 `as` 必须按下面的方式使用，注意缩进、留白和换行。
 
 ~~~php
 <?php
@@ -386,24 +351,21 @@ class Talker
 }
 ~~~
 
-### 4.3 Properties and Constants
+### 4.3 属性和常量
 
-Visibility MUST be declared on all properties.
+所有属性**必须**声明可见性。
 
-Visibility MUST be declared on all constants if your project PHP minimum
-version supports constant visibilities (PHP 7.1 or later).
+如果项目的 PHP 最小版本支持常量的可见性（PHP 7.1 及以上版本），所有的常量**必须**声明可见性。 
 
-The `var` keyword MUST NOT be used to declare a property.
+**不得**使用 `var` 关键字声明属性。
 
-There MUST NOT be more than one property declared per statement.
+**不得**使用一条语句声明多个属性。
 
-Property names MUST NOT be prefixed with a single underscore to indicate
-protected or private visibility. That is, an underscore prefix explicitly has
-no meaning.
+**不得**在属性名中使用单个下划线前缀表示 protected 和 private。也就是说下划线前缀没有明确的意义。
 
-There MUST be a space between type declaration and property name.
+类型声明和属性名之间**必须**有一个空格。
 
-A property declaration looks like the following:
+属性声明示例如下：
 
 ~~~php
 <?php
@@ -417,21 +379,15 @@ class ClassName
 }
 ~~~
 
-### 4.4 Methods and Functions
+### 4.4 方法和函数
 
-Visibility MUST be declared on all methods.
+所有方法**必须**声明可见性。
 
-Method names MUST NOT be prefixed with a single underscore to indicate
-protected or private visibility. That is, an underscore prefix explicitly has
-no meaning.
+**不得**在方法中使用单个下划线前缀表示 protected 和 private。也就是说下划线前缀没有明确的意义。
 
-Method and function names MUST NOT be declared with space after the method name. The
-opening brace MUST go on its own line, and the closing brace MUST go on the
-next line following the body. There MUST NOT be a space after the opening
-parenthesis, and there MUST NOT be a space before the closing parenthesis.
+声明方法和函数时**不得**在方法名或函数名后加空格。左大花括号**必须**单独占一行，右大花括号必须在其代码体的下一行。参数的左括号后面和右括号前面均**不得**有空格。
 
-A method declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+方法声明示例如下，注意括号、逗号、留白和花括号的位置。
 
 ~~~php
 <?php
@@ -447,8 +403,7 @@ class ClassName
 }
 ~~~
 
-A function declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+函数声明示例如下，注意括号、逗号、留白和花括号的位置。
 
 ~~~php
 <?php
@@ -459,13 +414,11 @@ function fooBarBaz($arg1, &$arg2, $arg3 = [])
 }
 ~~~
 
-### 4.5 Method and Function Arguments
+### 4.5 方法和函数的参数
 
-In the argument list, there MUST NOT be a space before each comma, and there
-MUST be one space after each comma.
+在参数列表中，每个逗号前**不得**有空格，但每个逗号后面**必须**有空格。
 
-Method and function arguments with default values MUST go at the end of the argument
-list.
+带有默认值的方法和函数参数**必须**放在参数列表的最后。
 
 ~~~php
 <?php
@@ -481,13 +434,9 @@ class ClassName
 }
 ~~~
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line.
+参数列表**可以**拆分为多行，每个后续行有一个缩进。这种情况下，列表中的第一个**必须**在新行上，并且每行**必须**只有一个参数。
 
-When the argument list is split across multiple lines, the closing parenthesis
-and opening brace MUST be placed together on their own line with one space
-between them.
+在参数列表拆分成多行的时候，右括号和左大花括号**必须**放在同一行，它们之间有一个空格。
 
 ~~~php
 <?php
@@ -505,6 +454,7 @@ class ClassName
     }
 }
 ~~~
+
 
 When you have a return type declaration present, there MUST be one space after
 the colon followed by the type declaration. The colon and declaration MUST be
