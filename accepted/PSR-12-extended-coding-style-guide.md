@@ -455,11 +455,7 @@ class ClassName
 }
 ~~~
 
-
-When you have a return type declaration present, there MUST be one space after
-the colon followed by the type declaration. The colon and declaration MUST be
-on the same line as the argument list closing parenthesis with no spaces between
-the two characters.
+如果有返回类型声明，冒号后面**必须**有一个空格，接着是类型声明。冒号、类型声明与参数列表**必须**在同一行，并且参数列表的右与冒号之间没有空格。
 
 ~~~php
 <?php
@@ -485,8 +481,7 @@ class ReturnTypeVariations
 }
 ~~~
 
-In nullable type declarations, there MUST NOT be a space between the question mark
-and the type.
+在允许为空值的类型声明中，问号与类型声明之间**不得**有空格。
 
 ~~~php
 <?php
@@ -504,36 +499,31 @@ class ReturnTypeVariations
 }
 ~~~
 
-When using the reference operator `&` before an argument, there MUST NOT be
-a space after it, like in the previous example.
+在参数前使用引用操作符 `&` 时，`&` 后**不得**有空格，参见前面的例子。
 
-There MUST NOT be a space between the variadic three dot operator and the argument
-name:
+可变数量的参数定义操作符（...）与参数名之间**不得**有空格。
 
-```php
+~~~php
 public function process(string $algorithm, ...$parts)
 {
     // processing
 }
-```
+~~~
 
-When combining both the reference operator and the variadic three dot operator,
-there MUST NOT be any space between the two of them:
+当同时使用引用操作符和可变数量参数定义操作符时，两个符号之间**不得**有空格。
 
-```php
+~~~php
 public function process(string $algorithm, &...$parts)
 {
     // processing
 }
-```
+~~~
 
-### 4.6 `abstract`, `final`, and `static`
+### 4.6 `abstract`、`final` 和 `static`
 
-When present, the `abstract` and `final` declarations MUST precede the
-visibility declaration.
+如果可见性、 `abstract` 和 `final` 声明同时出现，则可见性声明**必须**在最前面。
 
-When present, the `static` declaration MUST come after the visibility
-declaration.
+如果包含 `static` 声明，它也**必须**在可见性声明之后。
 
 ~~~php
 <?php
@@ -553,13 +543,10 @@ abstract class ClassName
 }
 ~~~
 
-### 4.7 Method and Function Calls
+### 4.7 方法和函数调用
 
-When making a method or function call, there MUST NOT be a space between the
-method or function name and the opening parenthesis, there MUST NOT be a space
-after the opening parenthesis, and there MUST NOT be a space before the
-closing parenthesis. In the argument list, there MUST NOT be a space before
-each comma, and there MUST be one space after each comma.
+当发生方法或函数调用时，在方法或函数名与左括号之间**不得**有空格。左括号之后和右括号之前也**不得**有空格。
+在参数列表中，逗号前**不得**有空格，逗号后**必须**有一个空格。
 
 ~~~php
 <?php
@@ -569,11 +556,8 @@ $foo->bar($arg1);
 Foo::bar($arg2, $arg3);
 ~~~
 
-Argument lists MAY be split across multiple lines, where each subsequent line
-is indented once. When doing so, the first item in the list MUST be on the
-next line, and there MUST be only one argument per line. A single argument being
-split across multiple lines (as might be the case with an anonymous function or
-array) does not constitute splitting the argument list itself.
+参数列表**可以**拆分为多行，每个后续行有一个缩进。这种情况下，列表中的第一个**必须**在新行上，并且每行**必须**只有一个参数。
+单个参数被拆分为多行（例如带有数组或匿名函数）不属于拆分参数列表自身。
 
 ~~~php
 <?php
@@ -597,28 +581,23 @@ $app->get('/hello/{name}', function ($name) use ($app) {
 });
 ~~~
 
-## 5. Control Structures
+## 5. 控制结构
 
-The general style rules for control structures are as follows:
+控制结构的通用风格规则如下：
 
-- There MUST be one space after the control structure keyword
-- There MUST NOT be a space after the opening parenthesis
-- There MUST NOT be a space before the closing parenthesis
-- There MUST be one space between the closing parenthesis and the opening
-  brace
-- The structure body MUST be indented once
-- The body MUST be on the next line after the opening brace
-- The closing brace MUST be on the next line after the body
+* 控制结构关键词后面**必须**有一个空格
+* 左括号后面**不得**有空格
+* 右括号前面**不得**有空格
+* 右括号和左大花括号之间**必须**有一个空格
+* 代码体**必须**有一缩进
+* 代码体**必须**在左大花括号下面另起新行
+* 右大花括号**必须**在代码代下面另起新行
 
-The body of each structure MUST be enclosed by braces. This standardizes how
-the structures look and reduces the likelihood of introducing errors as new
-lines get added to the body.
+控制结构的代码体**必须**用大花括号包住。这会使控制结构的外观标准化，并降低向代码体添加新行时引入错误的可能。
 
-### 5.1 `if`, `elseif`, `else`
+### 5.1 `if`、`elseif`、`else`
 
-An `if` structure looks like the following. Note the placement of parentheses,
-spaces, and braces; and that `else` and `elseif` are on the same line as the
-closing brace from the earlier body.
+`if` 结构如下例。注意括号、留白和大花括号的位置；`else`、`elseif` 与前一段代码体的右大花括号在同一行。
 
 ~~~php
 <?php
@@ -632,15 +611,9 @@ if ($expr1) {
 }
 ~~~
 
-The keyword `elseif` SHOULD be used instead of `else if` so that all control
-keywords look like single words.
+**应该**使用 `elseif` 代替 `else if`，这样一来所有的控制结构资讯看上去都是单个单词。
 
-Expressions in parentheses MAY be split across multiple lines, where each
-subsequent line is indented at least once. When doing so, the first condition
-MUST be on the next line. The closing parenthesis and opening brace MUST be
-placed together on their own line with one space between them. Boolean
-operators between conditions MUST always be at the beginning or at the end of
-the line, not a mix of both.
+括号内的表达式**可以**拆成多行，每个后续行至少要有一个缩进，必须一个条件**必须**另起新行。右括号和左大花括号**必须**在同一行，并且两者之间要有一个空格。条件之间的布尔（逻辑）运算符**必须**总是在行的开头或结尾，不能滥用。
 
 ~~~php
 <?php
@@ -658,13 +631,9 @@ if (
 }
 ~~~
 
-### 5.2 `switch`, `case`
+### 5.2 `switch`、`case`
 
-A `switch` structure looks like the following. Note the placement of
-parentheses, spaces, and braces. The `case` statement MUST be indented once
-from `switch`, and the `break` keyword (or other terminating keywords) MUST be
-indented at the same level as the `case` body. There MUST be a comment such as
-`// no break` when fall-through is intentional in a non-empty `case` body.
+`switch` 结构示例如下。注意括号、留白和大花括号的位置。`case` 语句必须基于 `switch` 缩进一次，`break` 关键字（或其它的终止关键词）**必须**与同级的 `case` 体保持相同的缩进。当非空的 `case` 体是 fall-through 模式时，**必须使用类似 `// no break` 的注释。
 
 ~~~php
 <?php
@@ -687,12 +656,7 @@ switch ($expr) {
 }
 ~~~
 
-Expressions in parentheses MAY be split across multiple lines, where each
-subsequent line is indented at least once. When doing so, the first condition
-MUST be on the next line. The closing parenthesis and opening brace MUST be
-placed together on their own line with one space between them. Boolean
-operators between conditions MUST always be at the beginning or at the end of
-the line, not a mix of both.
+括号内的表达式**可以**拆成多行，每个后续行至少要有一个缩进，必须一个条件**必须**另起新行。右括号和左大花括号**必须**在同一行，并且两者之间要有一个空格。条件之间的布尔（逻辑）运算符**必须**总是在行的开头或结尾，不能滥用。
 
 ~~~php
 <?php
@@ -705,10 +669,9 @@ switch (
 }
 ~~~
 
-### 5.3 `while`, `do while`
+### 5.3 `while`、`do while`
 
-A `while` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`while` 结构示例如下。注意括号、留白和大花括号的位置。
 
 ~~~php
 <?php
@@ -718,12 +681,7 @@ while ($expr) {
 }
 ~~~
 
-Expressions in parentheses MAY be split across multiple lines, where each
-subsequent line is indented at least once. When doing so, the first condition
-MUST be on the next line. The closing parenthesis and opening brace MUST be
-placed together on their own line with one space between them. Boolean
-operators between conditions MUST always be at the beginning or at the end of
-the line, not a mix of both.
+括号内的表达式**可以**拆成多行，每个后续行至少要有一个缩进，必须一个条件**必须**另起新行。右括号和左大花括号**必须**在同一行，并且两者之间要有一个空格。条件之间的布尔（逻辑）运算符**必须**总是在行的开头或结尾，不能滥用。
 
 ~~~php
 <?php
@@ -736,8 +694,7 @@ while (
 }
 ~~~
 
-Similarly, a `do while` statement looks like the following. Note the placement
-of parentheses, spaces, and braces.
+`do while` 语句示例如下。注意括号、留白和大花括号的位置。
 
 ~~~php
 <?php
@@ -747,10 +704,7 @@ do {
 } while ($expr);
 ~~~
 
-Expressions in parentheses MAY be split across multiple lines, where each
-subsequent line is indented at least once. When doing so, the first condition
-MUST be on the next line. Boolean operators between conditions MUST
-always be at the beginning or at the end of the line, not a mix of both.
+括号内的表达式**可以**拆成多行，每个后续行至少要有一个缩进，必须一个条件**必须**另起新行。右括号和左大花括号**必须**在同一行，并且两者之间要有一个空格。条件之间的布尔（逻辑）运算符**必须**总是在行的开头或结尾，不能滥用。
 
 ~~~php
 <?php
@@ -765,8 +719,7 @@ do {
 
 ### 5.4 `for`
 
-A `for` statement looks like the following. Note the placement of parentheses,
-spaces, and braces.
+`for` 语句示例如下。注意括号、留白和大花括号的位置。
 
 ~~~php
 <?php
@@ -776,10 +729,7 @@ for ($i = 0; $i < 10; $i++) {
 }
 ~~~
 
-Expressions in parentheses MAY be split across multiple lines, where each
-subsequent line is indented at least once. When doing so, the first expression
-MUST be on the next line. The closing parenthesis and opening brace MUST be
-placed together on their own line with one space between them.
+括号内的表达式**可以**拆成多行，每个后续行至少要有一个缩进，必须一个条件**必须**另起新行。右括号和左大花括号**必须**在同一行，并且两者之间要有一个空格。条件之间的布尔（逻辑）运算符**必须**总是在行的开头或结尾，不能滥用。
 
 ~~~php
 <?php
@@ -795,8 +745,7 @@ for (
 
 ### 5.5 `foreach`
 
-A `foreach` statement looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`foreach` 语句示例如下。注意括号、留白和大花括号的位置。
 
 ~~~php
 <?php
@@ -808,8 +757,7 @@ foreach ($iterable as $key => $value) {
 
 ### 5.6 `try`, `catch`, `finally`
 
-A `try-catch-finally` block looks like the following. Note the placement of
-parentheses, spaces, and braces.
+`try-catch-finally` 语句示例如下。注意括号、留白和大花括号的位置。
 
 ~~~php
 <?php
@@ -825,34 +773,34 @@ try {
 }
 ~~~
 
-## 6. Operators
+## 6. 运算符
 
-Style rules for operators are grouped by arity (the number of operands they take).
+运算符的风格规则运算量（所采用的操作数的数量）分组。
 
-When space is permitted around an operator, multiple spaces MAY be
-used for readability purposes.
+运算符允许用空格包围，**可以**使用空格来提高可读性。
 
-All operators not described here are left undefined.
+这里未说明的所有运算符均未定义。
 
-### 6.1. Unary operators
+### 6.1. 一元运算符
 
-The increment/decrement operators MUST NOT have any space between
-the operator and operand.
+自增/自减运算符与操作数之间**不得**有空格。
+
 ~~~php
 $i++;
 ++$j;
 ~~~
 
-Type casting operators MUST NOT have any space within the parentheses:
+类型转换运算符与操作数之间**不得**有空格。
+
 ~~~php
 $intValue = (int) $input;
 ~~~
 
-### 6.2. Binary operators
+### 6.2. 二元运算符
 
-All binary [arithmetic][], [comparison][], [assignment][], [bitwise][],
-[logical][], [string][], and [type][] operators MUST be preceded and
-followed by at least one space:
+包括[算术][]、[比较][]、[赋值][]、[位][]、
+[逻辑][]、[字符串][]和[类型][]在内的所有二元运算符前后都**必须**有至少一个空格：
+
 ~~~php
 if ($a === $b) {
     $foo = $bar ?? $a ?? $b;
@@ -861,45 +809,35 @@ if ($a === $b) {
 }
 ~~~
 
-### 6.3. Ternary operators
+### 6.3. 三元运算符
 
-The conditional operator, also known simply as the ternary operator, MUST be
-preceded and followed by at least one space around both the `?`
-and `:` characters:
+条件运算符（也被称为三元运算符）的 `?` 和 `:` 前后**必须**有至少一个空格：
+
 ~~~php
 $variable = $foo ? 'foo' : 'bar';
 ~~~
 
-When the middle operand of the conditional operator is omitted, the operator
-MUST follow the same style rules as other binary [comparison][] operators:
+如果条件符中间的操作数被省略，则该运算符**必须**遵循与其它[比较][]运算符相同的规则：
+
 ~~~php
 $variable = $foo ?: 'bar';
 ~~~
 
-## 7. Closures
+## 7. 闭包
 
-Closures MUST be declared with a space after the `function` keyword, and a
-space before and after the `use` keyword.
+装饰**必须**用带有一个空格的 `function` 关键字声明，并且 `use` 关键字前后都要有一个空格。
 
-The opening brace MUST go on the same line, and the closing brace MUST go on
-the next line following the body.
+左大花括号**必须**与 `function` 关键字在同一行，右大花括号**必须**在函数体的下一行。
 
-There MUST NOT be a space after the opening parenthesis of the argument list
-or variable list, and there MUST NOT be a space before the closing parenthesis
-of the argument list or variable list.
+参数列表或变量列表的左括号后和右括号前**不得**有空格。
 
-In the argument list and variable list, there MUST NOT be a space before each
-comma, and there MUST be one space after each comma.
+在参数列表和变量列表中，逗号前**不得**有空格，逗号后**必须有一个空格。
 
-Closure arguments with default values MUST go at the end of the argument
-list.
+带有默认值的闭包参数**必须**在参数列表的最后。
 
-If a return type is present, it MUST follow the same rules as with normal
-functions and methods; if the `use` keyword is present, the colon MUST follow
-the `use` list closing parentheses with no spaces between the two characters.
+如果有返回类型声明，**必须**遵循与函数和方法相同的规则；如果有 `use` 关键字，冒号**必须**跟在 `use` 列表的右括号之后，并且不能带空格。
 
-A closure declaration looks like the following. Note the placement of
-parentheses, commas, spaces, and braces:
+闭包声明的示例如下。注意括号、逗号、留白和大括号的位置：
 
 ~~~php
 <?php
@@ -917,17 +855,9 @@ $closureWithArgsVarsAndReturn = function ($arg1, $arg2) use ($var1, $var2): bool
 };
 ~~~
 
-Argument lists and variable lists MAY be split across multiple lines, where
-each subsequent line is indented once. When doing so, the first item in the
-list MUST be on the next line, and there MUST be only one argument or variable
-per line.
+参数列表和变量列表**可以**拆分为多行，每个后续行有一个缩进。这种情况下，列表中的第一个**必须**在新行上，并且每行**必须**只有一个参数。
 
-When the ending list (whether of arguments or variables) is split across
-multiple lines, the closing parenthesis and opening brace MUST be placed
-together on their own line with one space between them.
-
-The following are examples of closures with and without argument lists and
-variable lists split across multiple lines.
+下面分别是带有和不带有拆分成钓竿的参数列表及变量列表的闭包示例：
 
 ~~~php
 <?php
@@ -977,8 +907,7 @@ $shortArgs_longVars = function ($arg) use (
 };
 ~~~
 
-Note that the formatting rules also apply when the closure is used directly
-in a function or method call as an argument.
+这些规则也适用于闭包被直接作为函数或方法调用的参数的情况。
 
 ~~~php
 <?php
@@ -992,10 +921,9 @@ $foo->bar(
 );
 ~~~
 
-## 8. Anonymous Classes
+## 8. 匿名类
 
-Anonymous Classes MUST follow the same guidelines and principles as closures
-in the above section.
+匿名类**必须**遵循与上面小节中闭包相同的方针和原则。
 
 ~~~php
 <?php
@@ -1003,10 +931,7 @@ in the above section.
 $instance = new class {};
 ~~~
 
-The opening brace MAY be on the same line as the `class` keyword so long as
-the list of `implements` interfaces does not wrap. If the list of interfaces
-wraps, the brace MUST be placed on the line immediately following the last
-interface.
+如果 `implements` 接口列表没有折行，左大花括号就**必须**与 `class` 关键字在同一行。如果接口列表折行，左大花括号则**必须**放在最后一个列表所在的行。
 
 ~~~php
 <?php
@@ -1030,10 +955,10 @@ $instance = new class extends \Foo implements
 [PSR-2]: https://www.php-fig.org/psr/psr-2/
 [keywords]: http://php.net/manual/en/reserved.keywords.php
 [types]: http://php.net/manual/en/reserved.other-reserved-words.php
-[arithmetic]: http://php.net/manual/en/language.operators.arithmetic.php
-[assignment]: http://php.net/manual/en/language.operators.assignment.php
-[comparison]: http://php.net/manual/en/language.operators.comparison.php
-[bitwise]: http://php.net/manual/en/language.operators.bitwise.php
-[logical]: http://php.net/manual/en/language.operators.logical.php
-[string]: http://php.net/manual/en/language.operators.string.php
-[type]: http://php.net/manual/en/language.operators.type.php
+[算术]: http://php.net/manual/en/language.operators.arithmetic.php
+[赋值]: http://php.net/manual/en/language.operators.assignment.php
+[比较]: http://php.net/manual/en/language.operators.comparison.php
+[位]: http://php.net/manual/en/language.operators.bitwise.php
+[逻辑]: http://php.net/manual/en/language.operators.logical.php
+[字符串]: http://php.net/manual/en/language.operators.string.php
+[类型]: http://php.net/manual/en/language.operators.type.php
