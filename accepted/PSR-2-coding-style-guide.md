@@ -726,5 +726,4 @@ PHP 起始标签后有没有空行？
         next/same/same: 1
         same/same/same: 6
 
-
 [^译者注1]:此处原文为**编码风格指南（Coding style guide）**，链接指向的是**基本编码标准（Basic coding standard）**

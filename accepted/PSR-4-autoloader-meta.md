@@ -1,21 +1,14 @@
-# PSR-4 Meta Document
+# PSR-4 元文档
 
-## 1. Summary
+## 1. 概述
 
-The purpose is to specify the rules for an interoperable PHP autoloader that
-maps namespaces to file system paths, and that can co-exist with any other SPL
-registered autoloader.  This would be an addition to, not a replacement for,
-PSR-0.
+本文的目的是说明将命名空间映射到文件系统路径，并与其它 SPL 注册的自动装载器共存的可协作的 PHP 自动装载器规则。它是对 PSR-0 的补充，而不是要取代之。
 
-## 2. Why Bother?
+## 2. 问题何在
 
-### History of PSR-0
+### PSR-0 历史
 
-The PSR-0 class naming and autoloading standard rose out of the broad
-acceptance of the Horde/PEAR convention under the constraints of PHP 5.2 and
-previous. With that convention, the tendency was to put all PHP source classes
-in a single main directory, using underscores in the class name to indicate
-pseudo-namespaces, like so:
+PSR-0 类命名和自裁加载标准源于在 PHP 5.2 及以前版本限制下被广泛接受的 Horde/PEAR 约定。该标准倾向于将所有的类源文件放入单个主目录中，在类名中使用下划线表示伪命名空间，就像这样：
 
     /path/to/src/
         VendorFoo/
@@ -25,11 +18,7 @@ pseudo-namespaces, like so:
             Zim/
                 Gir.php     # Vendor_Dib_Zim_Gir
 
-With the release of PHP 5.3 and the availability of namespaces proper, PSR-0
-was introduced to allow both the old Horde/PEAR underscore mode *and* the use
-of the new namespace notation. Underscores were still allowed in the class
-name to ease the transition from the older namespace naming to the newer naming,
-and thereby to encourage wider adoption.
+随着 PHP 5.3 发布和命名空间正式可用，PSR-0 被引入以同时允许旧的 Horde/PEAR 下划线模式*与*使用新的命名空间符号。仍然允许在类名中使用下划线以便于从旧的命名空间命名向新的命名转换，进而鼓励命名空间的广泛采用。
 
     /path/to/src/
         VendorFoo/
@@ -43,19 +32,13 @@ and thereby to encourage wider adoption.
                 V1.php
                 V2.php      # Irk_Operation\Impending_Doom\V2
 
-This structure is informed very much by the fact that the PEAR installer moved
-source files from PEAR packages into a single central directory.
+PEAR 安装器将源文件从 PEAR 包移动到单个中心目录中这一事实，充分解释了这一结构。
 
-### Along Comes Composer
+### Composer 来了
 
-With Composer, package sources are no longer copied to a single global
-location. They are used from their installed location and are not moved
-around. This means that with Composer there is no "single main directory" for
-PHP sources as with PEAR. Instead, there are multiple directories; each
-package is in a separate directory for each project.
+使用 Composer 时，源码包不再被复制到单一全局位置。它们在安装位置使用，不再到处移动。这意味着 Composer 没有你 PEAR 那样的 PHP 源“单一主目录”。取而代之的是多个目录，每个项目的包放在分隔的目录中。
 
-To meet the requirements of PSR-0, this leads to Composer packages looking
-like this:
+为满足 PSR-0 的要求，Composer 包就得长成这样：
 
     vendor/
         vendor_name/
@@ -69,12 +52,9 @@ like this:
                         Package_Name/
                             ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest
 
-The "src" and "tests" directories have to include vendor and package directory
-names. This is an artifact of PSR-0 compliance.
+"src" 和 "tests" 目录不得不包含 vendor 和包目录名。这是屈从 PSR-0 的结果。
 
-Many find this structure to be deeper and more repetitive than necessary. This
-proposal suggests that an additional or superseding PSR would be useful so
-that we can have packages that look more like the following:
+这个结构有许多远超所需的深度和重复。此建议推荐使用附加或替代 PSR 以使我们能援用如下格式的包：
 
     vendor/
         vendor_name/
@@ -84,131 +64,92 @@ that we can have packages that look more like the following:
                 tests/
                     ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest
 
-This would require an implementation of what was initially called
-"package-oriented autoloading" (as vs the traditional "direct class-to-file
-autoloading").
+这将包含一个最初被称为“面向包的自动加载”（与传统的“直接的类到包的自动加载相对）的实现。
 
-### Package-Oriented Autoloading
+### 面向包的自动加载
 
-It's difficult to implement package-oriented autoloading via an extension or
-amendment to PSR-0, because PSR-0 does not allow for an intercessory path
-between any portions of the class name. This means the implementation of a
-package-oriented autoloader would be more complicated than PSR-0. However, it
-would allow for cleaner packages.
+借助扩展或修正 PSR-0 来实现面向包的自动加载很难，因为 PSR-0 不允许在类名的任何部分之间调制路径。这意味着面向包的自动加载器比 PSR-0 更复杂。而且它还要允许干净的包。
 
-Initially, the following rules were suggested:
+起初推荐的是如下规则：
 
-1. Implementors MUST use at least two namespace levels: a vendor name, and
-package name within that vendor. (This top-level two-name combination is
-hereinafter referred to as the vendor-package name or the vendor-package
-namespace.)
+1. 该实现**必须**使用至少两级命名空间：供应商名称和该工作方法商的包名。（这个顶级双名组合，在后面被称为供应商-包信或供应商-包命名空间。）
 
-2. Implementors MUST allow a path infix between the vendor-package namespace
-and the remainder of the fully qualified class name.
+2. 该实现**必须**允许在供应商-包命名空间和余下的完整例规的类名之间插入路径。
 
-3. The vendor-package namespace MAY map to any directory. The remaining
-portion of the fully-qualified class name MUST map the namespace names to
-identically-named directories, and MUST map the class name to an
-identically-named file ending in .php.
+3. 供应商-包命名空间**可以**映射到任意目录。完整合规的的剩余部分**必须**映射到命名空间的同名目录，并且类名**必须**映射到以 .php 结尾的同名文件。
 
-Note that this means the end of underscore-as-directory-separator in the class
-name. One might think underscores should be honored as they are under
-PSR-0, but seeing as their presence in that document is in reference to
-transitioning away from PHP 5.2 and previous pseudo-namespacing, it is
-acceptable to remove them here as well.
+注意，这意味着不再在类名中使用下划线作为目录间隔符。人们可能会认为下划线应该可以像它们在 PSR-0 下那样使用，但是它们在文档中被指为从 PHP 5.2 或更早版本的伪命名空间的过渡，因此移除这种用法也是可以接受的。
 
-## 3. Scope
+## 3. 范围
 
-### 3.1 Goals
+### 3.1 目标
 
-- Retain the PSR-0 rule that implementors MUST use at least two namespace
-  levels: a vendor name, and package name within that vendor.
+- 保持 PSR-0 规则，该实现**必须**使用最少丙级命名空间：供应商名称、供应商包名。
 
-- Allow a path infix between the vendor-package namespace and the remainder of
-  the fully qualified class name.
+- 允许在供应商-包命名空间和剩余的完整例规的类名之间插入路径。
 
-- Allow the vendor-package namespace MAY map to any directory, perhaps
-  multiple directories.
+- 供应商-包命名空间**可以**映射到任意目录，可能是多个目录。
 
-- End the honoring of underscores in class names as directory separators
+- 类名中的下划线不再作为目录分隔符。
 
-### 3.2 Non-Goals
+### 3.2 目标之外
 
-- Provide a general transformation algorithm for non-class resources
+- 为非类资源提供通用转换算法
 
-## 4. Approaches
+## 4. 方案
 
-### 4.1 Chosen Approach
+### 4.1 优选方案
 
-This approach retains key characteristics of PSR-0 while eliminating the
-deeper directory structures it requires. In addition, it specifies certain
-additional rules that make implementations explicitly more interoperable.
+这种方法包含 PSR-0 的关键特性，除了其包含的较深的目录结构。此外，它还指定了一些附加规则，这些规则使得实现更具可操作性。
 
-Although not related to directory mapping, the final draft also specifies how
-autoloaders should handle errors.  Specifically, it forbids throwing exceptions
-or raising errors.  The reason is two-fold.
+如果没能关联到目录映射，最终方案还指明了自动加载器应如何处理错误。需要注意，禁止抛出异常或引发错误。这个条件有两重意思。
 
-1. Autoloaders in PHP are explicitly designed to be stackable so that if one
-autoloader cannot load a class another has a chance to do so. Having an autoloader
-trigger a breaking error condition violates that compatibility.
+1. PHP 自动加载器被设计成可叠加的，如果一个加载器没能载入一个类，其它的加载器还有机会完成这一动作。允许自动加载器触发中断错误条件会破坏协作性。
 
-2. `class_exists()` and `interface_exists()` allow "not found, even after trying to
-autoload" as a legitimate, normal use case. An autoloader that throws exceptions
-renders `class_exists()` unusable, which is entirely unacceptable from an interoperability
-standpoint.  Autoloaders that wish to provide additional debugging information
-in a class-not-found case should do so via logging instead, either to a PSR-3
-compatible logger or otherwise.
+2. `class_exists()` 和 `interface_exists()` 函数允许”找不到，但之后仍尝试加载“作为合法的、常规的用例。 抛出异常的加载器会使 `class_exists()` 不可用，对协作而言，这是不可接受的。
+希望在找不到类的情况下提供附加的 debug 信息的加载器可以用记录日志来实现，与 PSR-3 兼容的或其他的日志工具。
 
-Pros:
+优点：
 
-- Shallower directory structures
+- 较浅的目录结构
 
-- More flexible file locations
+- 更灵活的文件位置
 
-- Stops underscore in class name from being honored as directory separator
+- 不再将类名中的下划线用作目录分隔符
 
-- Makes implementations more explicitly interoperable
+- 使得实现更具可操作性
 
-Cons:
+缺点：
 
-- It is no longer possible, as under PSR-0, to merely examine a class name to
-  determine where it is in the file system (the "class-to-file" convention
-  inherited from Horde/PEAR).
+- 与 PSR-0 类似，仅通过检查类名来确定其在文件系统中的位置并不总是有效的（类至文件的转换继承自 Horde/PEAR）。
 
-### 4.2 Alternative: Stay With PSR-0 Only
+### 4.2 备选方案：仅使用 PSR-0
 
-Staying with PSR-0 only, although reasonable, does leave us with relatively
-deeper directory structures.
+仅使用 PSR-0 虽然合理，却会给我们带来更深的目录结构。
 
-Pros:
+优点：
 
-- No need to change anyone's habits or implementations
+- 不需要改变任何人的习惯或实现
 
-Cons:
+缺点：
 
-- Leaves us with deeper directory structures
+- 带来更深的目录结构
 
-- Leaves us with underscores in the class name being honored as directory
-  separators
+- 类名中的下划线用作目录分隔符
 
-### 4.3 Alternative: Split Up Autoloading And Transformation
+### 4.3 备选方案：将自动加载和转换拆分开来
 
-Beau Simensen and others suggested that the transformation algorithm might be
-split out from the autoloading proposal so that the transformation rules
-could be referenced by other proposals. After doing the work to separate them,
-followed by a poll and some discussion, the combined version (i.e.,
-transformation rules embedded in the autoloader proposal) was revealed as the
-preference.
+Beau Simensen 等人建议将转换算法从自裁加载建议中拆分出来，以使转换规则可以为其他建议所用。拆分了他们之后的调查和讨论显示，组合版本（即将转换规则嵌入在自动加载建议中）更受欢迎。
 
-Pros:
+优点：
 
-- Transformation rules could be referenced separately by other proposals
+- 转换规则可被其他建议单独引用。
 
-Cons:
+缺点：
 
-- Not in line with the wishes of poll respondents and some collaborators
+- 不符合调查对象和部分合作者的意愿。
 
-### 4.4 Alternative: Use More Imperative And Narrative Language
+### 4.4 备选方案：Alternative: Use More Imperative And Narrative Language
 
 After the second vote was pulled by a Sponsor after hearing from multiple +1
 voters that they supported the idea but did not agree with (or understand) the
