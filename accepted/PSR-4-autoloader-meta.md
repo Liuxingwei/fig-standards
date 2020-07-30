@@ -149,35 +149,27 @@ Beau Simensen 等人建议将转换算法从自裁加载建议中拆分出来，
 
 - 不符合调查对象和部分合作者的意愿。
 
-### 4.4 备选方案：Alternative: Use More Imperative And Narrative Language
+### 4.4 备选方案：使用更具命令性和叙述性的语言
 
-After the second vote was pulled by a Sponsor after hearing from multiple +1
-voters that they supported the idea but did not agree with (or understand) the
-wording of the proposal, there was a period during which the voted-on proposal
-was expanded with greater narrative and somewhat more imperative language. This
-approach was decried by a vocal minority of participants. After some time, Beau
-Simensen started an experimental revision with an eye to PSR-0; the Editor and
-Sponsors favored this more terse approach and shepherded the version now under
-consideration, written by Paul M. Jones and contributed to by many.
+一位发起者在听取了多位 +1 投票人关于他们支持这一想法但不同意（或不理解）提案的错词后，撤回了第二轮投票，之后有段时间，提案被使用更富有叙述性和更具命令性的语言扩展。
+这种方法遭到了少数参与者的强烈谴责。一段时间之后，Beau Simensen 开始了一项基于 PSR-0 的实验性的改进；编辑和提案人赞同这种更简洁的方案，并指导了正在审议中的由 Paul M. 执笔、多人贡献的版本。
 
-### Compatibility Note with PHP 5.3.2 and below
+### PHP 5.3.2 及以下版本的兼容性说明
 
-PHP versions before 5.3.3 do not strip the leading namespace separator, so
-the responsibility to look out for this falls on the implementation. Failing
-to strip the leading namespace separator could lead to unexpected behavior.
+PHP 5.3.2 以前的版本不会去掉前导的命名空间分隔符，留意这一点的责任落在实现上。未能去除前导命名空间分隔符可能导致非预期的行为。
 
-## 5. People
+## 5. 人员
 
-### 5.1 Editor
+### 5.1 编辑
 
 - Paul M. Jones, Solar/Aura
 
-### 5.2 Sponsors
+### 5.2 发起人
 
 - Phil Sturgeon, PyroCMS (Coordinator)
 - Larry Garfield, Drupal
 
-### 5.3 Contributors
+### 5.3 投稿人
 
 - Andreas Hennings
 - Bernhard Schussek
@@ -187,21 +179,21 @@ to strip the leading namespace separator could lead to unexpected behavior.
 - Paul Dragoonis
 - Too many others to name and count
 
-## 6. Votes
+## 6. 投票
 
-- **Entrance Vote:** <https://groups.google.com/d/msg/php-fig/_LYBgfcEoFE/ZwFTvVTIl4AJ>
+- **进入投票：** <https://groups.google.com/d/msg/php-fig/_LYBgfcEoFE/ZwFTvVTIl4AJ>
 
-- **Acceptance Vote:**
+- **赞成投票+**
 
-    - 1st attempt: <https://groups.google.com/forum/#!topic/php-fig/Ua46E344_Ls>,
-      presented prior to new workflow; aborted due to accidental proposal modification
+  - 首次尝试： <https://groups.google.com/forum/#!topic/php-fig/Ua46E344_Ls>，
+    在新工作流之前提交；由于意外修改建议而中止
 
-    - 2nd attempt: <https://groups.google.com/forum/#!topic/php-fig/NWfyAeF7Psk>,
-      cancelled at the discretion of the sponsor <https://groups.google.com/forum/#!topic/php-fig/t4mW2TQF7iE>
+  - 第二次尝试: <https://groups.google.com/forum/#!topic/php-fig/NWfyAeF7Psk>,
+    发起人自行决定取消 <https://groups.google.com/forum/#!topic/php-fig/t4mW2TQF7iE>
 
-    - 3rd attempt: TBD
+  - 第三次尝试： 待定
 
-## 7. Relevant Links
+## 7. 相关链接
 
 - [Autoloader, round 4](https://groups.google.com/forum/#!topicsearchin/php-fig/autoload/php-fig/lpmJcmkNYjM)
 - [POLL: Autoloader: Split or Combined?](https://groups.google.com/forum/#!topicsearchin/php-fig/autoload/php-fig/fGwA6XHlYhI)
