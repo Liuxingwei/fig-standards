@@ -1,72 +1,64 @@
-Example Implementations of PSR-4
+PSR-4 的示例实现
 ================================
 
-The following examples illustrate PSR-4 compliant code:
+下面的例子展示了与 PSR-4 相符的代码：
 
-Closure Example
+闭包示例
 ---------------
 
 ~~~php
 <?php
 /**
- * An example of a project-specific implementation.
+ * 一个特定项目实现的示例。
  *
- * After registering this autoload function with SPL, the following line
- * would cause the function to attempt to load the \Foo\Bar\Baz\Qux class
- * from /path/to/project/src/Baz/Qux.php:
+ * 先注册这个 SPL 自动加载函数，其后的行将引用此函数尝试从 /path/to/project/src/Baz/Qux.php 加载 \Foo\Bar\Baz\Qux 类。
  *
  *      new \Foo\Bar\Baz\Qux;
  *
- * @param string $class The fully-qualified class name.
+ * @param string $class 完全限定类名。
  * @return void
  */
 spl_autoload_register(function ($class) {
 
-    // project-specific namespace prefix
+    // 特定项目的命名空间前缀
     $prefix = 'Foo\\Bar\\';
 
-    // base directory for the namespace prefix
+    // 命名空间前缀对应的基本目录
     $base_dir = __DIR__ . '/src/';
 
-    // does the class use the namespace prefix?
+    // 类是否使用命名空间前缀？
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
-        // no, move to the next registered autoloader
+        // 不，跳转到下一个注册的自动加载器
         return;
     }
 
-    // get the relative class name
+    // 得到相对类名
     $relative_class = substr($class, $len);
 
-    // replace the namespace prefix with the base directory, replace namespace
-    // separators with directory separators in the relative class name, append
-    // with .php
+    // 使用基本目录替换命名空间前缀，使用目录分隔符替换相对类名中的命名空间间隔符并附加 .php
     $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
 
-    // if the file exists, require it
+    // 如果文件存在，require 它
     if (file_exists($file)) {
         require $file;
     }
 });
 ~~~
 
-Class Example
+类示例
 -------------
 
-The following is an example class implementation to handle multiple
-namespaces:
+下面是处理多个命名空间的类实现示例：
 
 ~~~php
 <?php
 namespace Example;
 
 /**
- * An example of a general-purpose implementation that includes the optional
- * functionality of allowing multiple base directories for a single namespace
- * prefix.
+ * 一个单一命名空间前缀对应多个基本目录的包含可靠功能的常规实现示例。
  *
- * Given a foo-bar package of classes in the file system at the following
- * paths ...
+ * 给定一个在如下文件系统路径中的 foo-bar 类包 ...
  *
  *     /path/to/packages/foo-bar/
  *         src/
@@ -78,28 +70,27 @@ namespace Example;
  *             Qux/
  *                 QuuxTest.php    # Foo\Bar\Qux\QuuxTest
  *
- * ... add the path to the class files for the \Foo\Bar\ namespace prefix
- * as follows:
+ * ... 为下面的 \Foo\Bar\ 命名空间前缀添加类文件路径：
  *
  *      <?php
- *      // instantiate the loader
+ *      // 实例化加载器
  *      $loader = new \Example\Psr4AutoloaderClass;
  *
- *      // register the autoloader
+ *      // 注册加载器register the autoloader
  *      $loader->register();
  *
- *      // register the base directories for the namespace prefix
+ *      // 为命名空间前缀注册基本目录
  *      $loader->addNamespace('Foo\Bar', '/path/to/packages/foo-bar/src');
  *      $loader->addNamespace('Foo\Bar', '/path/to/packages/foo-bar/tests');
  *
- * The following line would cause the autoloader to attempt to load the
- * \Foo\Bar\Qux\Quux class from /path/to/packages/foo-bar/src/Qux/Quux.php:
+ * 下面这行代码将调用自动加载器尝试从 /path/to/packages/foo-bar/src/Qux/Quux.php 文件加载
+ * \Foo\Bar\Qux\Quux 类：
  *
  *      <?php
  *      new \Foo\Bar\Qux\Quux;
  *
- * The following line would cause the autoloader to attempt to load the
- * \Foo\Bar\Qux\QuuxTest class from /path/to/packages/foo-bar/tests/Qux/QuuxTest.php:
+ * 下面这行代码将调用自动加载器尝试从 /path/to/packages/foo-bar/tests/Qux/QuuxTest.php 文件加载
+ * \Foo\Bar\Qux\QuuxTest 类：
  *
  *      <?php
  *      new \Foo\Bar\Qux\QuuxTest;
@@ -107,15 +98,14 @@ namespace Example;
 class Psr4AutoloaderClass
 {
     /**
-     * An associative array where the key is a namespace prefix and the value
-     * is an array of base directories for classes in that namespace.
+     * 一个键为命名空间前缀，值为命名被单中的类的基本目录的关联数组
      *
      * @var array
      */
     protected $prefixes = array();
 
     /**
-     * Register loader with SPL autoloader stack.
+     *注册带有 SPL 自动加载器栈的加载器。
      *
      * @return void
      */
@@ -125,30 +115,27 @@ class Psr4AutoloaderClass
     }
 
     /**
-     * Adds a base directory for a namespace prefix.
+     * 为命名空间前缀添加基本目录
      *
-     * @param string $prefix The namespace prefix.
-     * @param string $base_dir A base directory for class files in the
-     * namespace.
-     * @param bool $prepend If true, prepend the base directory to the stack
-     * instead of appending it; this causes it to be searched first rather
-     * than last.
+     * @param string $prefix 命名空间前缀
+     * @param string $base_dir 命名空间中的类文件的基本目录
+     * @param bool $prepend 如果为真，将基本目录添加到栈顶而不是添加到栈底；结果是它将比其他的基本路径更早被搜索到。
      * @return void
      */
     public function addNamespace($prefix, $base_dir, $prepend = false)
     {
-        // normalize namespace prefix
+        // 标准化命名空间前缀
         $prefix = trim($prefix, '\\') . '\\';
 
-        // normalize the base directory with a trailing separator
+        // 标准化带有尾部分隔符的基本目录
         $base_dir = rtrim($base_dir, DIRECTORY_SEPARATOR) . '/';
 
-        // initialize the namespace prefix array
+        // 初始化命名空间前缀数组
         if (isset($this->prefixes[$prefix]) === false) {
             $this->prefixes[$prefix] = array();
         }
 
-        // retain the base directory for the namespace prefix
+        // 在数据中保存命名空间对应的基本目录
         if ($prepend) {
             array_unshift($this->prefixes[$prefix], $base_dir);
         } else {
@@ -157,83 +144,77 @@ class Psr4AutoloaderClass
     }
 
     /**
-     * Loads the class file for a given class name.
+     * 载入给定类名的类文件
      *
-     * @param string $class The fully-qualified class name.
-     * @return mixed The mapped file name on success, or boolean false on
-     * failure.
+     * @param string $class 完全限定类名。
+     * @return mixed 映射成功返回文件名，失败返回逻辑假。
      */
     public function loadClass($class)
     {
-        // the current namespace prefix
+        // 当前命名空间前缀
         $prefix = $class;
 
-        // work backwards through the namespace names of the fully-qualified
-        // class name to find a mapped file name
+        // 向后搜索完全限定命名类名的命名空间名称以找到映射文件
         while (false !== $pos = strrpos($prefix, '\\')) {
 
-            // retain the trailing namespace separator in the prefix
+            // 在prefix变量中保存结尾的命名空间分隔符
             $prefix = substr($class, 0, $pos + 1);
 
-            // the rest is the relative class name
+            // 截取剩余的相对类名
             $relative_class = substr($class, $pos + 1);
 
-            // try to load a mapped file for the prefix and relative class
+            // 尝试加载对应的文件
             $mapped_file = $this->loadMappedFile($prefix, $relative_class);
             if ($mapped_file) {
                 return $mapped_file;
             }
 
-            // remove the trailing namespace separator for the next iteration
-            // of strrpos()
+            // 为 strrpos() 的下一个迭代移去结尾的命名空间间隔符
             $prefix = rtrim($prefix, '\\');
         }
 
-        // never found a mapped file
+        // 未找到映射文件
         return false;
     }
 
     /**
-     * Load the mapped file for a namespace prefix and relative class.
+     * 加载命名空间前缀和相对类名的映射文件
      *
-     * @param string $prefix The namespace prefix.
-     * @param string $relative_class The relative class name.
-     * @return mixed Boolean false if no mapped file can be loaded, or the
-     * name of the mapped file that was loaded.
+     * @param string $prefix 命名空间前缀
+     * @param string $relative_class 相对类名
+     * @return mixed Boolean 如果没能加载映射文件返回假，或者返回载入的映射文件的文件名f
      */
     protected function loadMappedFile($prefix, $relative_class)
     {
-        // are there any base directories for this namespace prefix?
+        // 这个命名空间前缀有基本目录吗？
         if (isset($this->prefixes[$prefix]) === false) {
             return false;
         }
 
-        // look through base directories for this namespace prefix
+        // 为命名空间查找基本目录
         foreach ($this->prefixes[$prefix] as $base_dir) {
 
-            // replace the namespace prefix with the base directory,
-            // replace namespace separators with directory separators
-            // in the relative class name, append with .php
+            // 使用基本目录替换命名空间前缀，使用目录分隔符替换相对类名中的命名空间间隔符并附加 .php
             $file = $base_dir
                   . str_replace('\\', '/', $relative_class)
                   . '.php';
 
-            // if the mapped file exists, require it
+            // 如果映射文件存在，require 它
             if ($this->requireFile($file)) {
-                // yes, we're done
+                // 嗯，完成了
                 return $file;
             }
         }
 
-        // never found it
+        // 没有找到
         return false;
     }
 
     /**
-     * If a file exists, require it from the file system.
+     * 如果文件存在，从文件系统 require 它
      *
-     * @param string $file The file to require.
-     * @return bool True if the file exists, false if not.
+     * @param string $file 被 require 的文件
+     * @return bool 文件存在返回真，否则返回假
      */
     protected function requireFile($file)
     {
@@ -246,9 +227,9 @@ class Psr4AutoloaderClass
 }
 ~~~
 
-### Unit Tests
+### 单元测试
 
-The following example is one way of unit testing the above class loader:
+下面的例子是对上面的类加载进行单元测试的一种方法：
 
 ~~~php
 <?php
