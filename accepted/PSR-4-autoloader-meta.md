@@ -92,13 +92,13 @@ PEAR 安装器将源文件从 PEAR 包移动到单个中心目录中这一事实
 
 - 类名中的下划线不再作为目录分隔符。
 
-### 3.2 目标之外
+### 3.2 目标之外[^译者注]
 
 - 为非类资源提供通用转换算法
 
 ## 4. 方案
 
-### 4.1 优选方案
+### 4.1 既定方案
 
 这种方法包含 PSR-0 的关键特性，除了其包含的较深的目录结构。此外，它还指定了一些附加规则，这些规则使得实现更具可操作性。
 
@@ -207,3 +207,5 @@ PHP 5.3.2 以前的版本不会去掉前导的命名空间分隔符，留意这�
 - [Towards a Package Oriented Autoloader](https://groups.google.com/forum/#!searchin/php-fig/package$20oriented$20autoloader/php-fig/JdR-g8ZxKa8/jJr80ard-ekJ)
 - [List of Alternative PSR-4 Proposals](https://groups.google.com/forum/#!topic/php-fig/oXr-2TU1lQY)
 - [Summary of [post-Acceptance Vote pull] PSR-4 discussions](https://groups.google.com/forum/#!searchin/php-fig/psr-4$20summary/php-fig/bSTwUX58NhE/YPcFgBjwvpEJ)
+
+[译者注]: 原文为 Non-Goals，意为「非目标」，即下面这段内容不是本标准的目标。

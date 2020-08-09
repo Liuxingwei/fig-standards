@@ -1,97 +1,67 @@
-# PSR-Cache Meta Document
+# PSR-缓存元文档
 
-## 1. Summary
+## 1. 概述
 
-Caching is a common way to improve the performance of any project, making
-caching libraries one of the most common features of many frameworks and
-libraries. This has lead to a situation where many libraries roll their own
-caching libraries, with various levels of functionality. These differences are
-causing developers to have to learn multiple systems which may or may not
-provide the functionality they need. In addition, the developers of caching
-libraries themselves face a choice between only supporting a limited number
-of frameworks or creating a large number of adapter classes.
+缓存是提高项目性能的通用方法，建立骑在缓存库是许多框架和库的常见特性之一。这就导致了一种情况：许多库使用不同级别的功能迭代自己的缓存库。
+这些差异导致开发者不得不学习多个具有或不具有他们所需的功能的系统。另外，缓存库的开发者也要面对在仅支持有限框架或创建一个大量适配器类之间做选择的难题。
 
-## 2. Why Bother?
+## 2. 为什么这么麻烦
 
-A common interface for caching systems will solve these problems. Library and
-framework developers can count on the caching systems working the way they're
-expecting, while the developers of caching systems will only have to implement
-a single set of interfaces rather than a whole assortment of adapters.
+缓存系统的通用接口将解决上述问题。当缓存库的开发者仅仅实现单一的接口组，而不是完全不同的适配器时，库和框架开发者就能够指望缓存系统以他们期望的方式工作。
 
-Moreover, the implementation presented here is designed for future extensibility.
-It allows a variety of internally-different but API-compatible implementations
-and offers a clear path for future extension by later PSRs or by specific
-implementers.
+而且，此处的实现是为未来的可扩展性设计的。它允许内部差异但 API 兼容的实现，并为之后的 PSR 或特殊实现提供了清晰的扩展路径。
 
-Pros:
-* A standard interface for caching allows free-standing libraries to support
-caching of intermediary data without effort; they may simply (optionally) depend
-on this standard interface and leverage it without being concerned about
-implementation details.
-* Commonly developed caching libraries shared by multiple projects, even if
-they extend this interface, are likely to be more robust than a dozen separately
-developed implementations.
+优点：
 
-Cons:
-* Any interface standardization runs the risk of stifling future innovation as
-being "not the Way It's Done(tm)".  However, we believe caching is a sufficiently
-commoditized problem space that the extension capability offered here mitigates
-any potential risk of stagnation.
+* 缓存的标准接口允许独立库不费吹灰之力就支持中间数据的缓存；他们可以简单地（可选地）依赖和利用这些标准接口，且无需关心其具体实现。
+* 由多个项目共享的通用缓存库，即使其接口被扩展，也可能比多个独立开发的实现更健壮。
 
-## 3. Scope
+缺点：
 
-### 3.1 Goals
+* 任何标准化的接口都有扼杀创新的风险，因为「它不是**这么做的**」。不过，我们相信缓存是一个十分商业化的问题领域，此处提供的扩展可以缓解任何潜在的停滞风险。
 
-* A common interface for basic and intermediate-level caching needs.
-* A clear mechanism for extending the specification to support advanced features,
-both by future PSRs or by individual implementations. This mechanism must allow
-for multiple independent extensions without collision.
+## 3. 范围
 
-### 3.2 Non-Goals
+### 3.1 目标
 
-* Architectural compatibility with all existing cache implementations.
-* Advanced caching features such as namespacing or tagging that are used by a
-minority of users.
+* 一个初级和中级缓存的通用接口。
+* 一种用于扩展规范以支持高级特性（无论是通过将来的 PSR 还是单独的实现）的明确机制。此机制必须允许多个独立扩展而不发生冲突。
 
-## 4. Approaches
+### 3.2 目标之外[^译者注]
 
-### 4.1 Chosen Approach
+* 架构兼容所有已存在的缓存实现
+* 少数用户使用的诸如命名空间和标签之类的高级功能。
 
-This specification adopts a "repository model" or "data mapper" model for caching
-rather than the more traditional "expire-able key-value" model.  The primary
-reason is flexibility.  A simple key/value model is much more difficult to extend.
+## 4. 方案
 
-The model here mandates the use of a CacheItem object, which represents a cache
-entry, and a Pool object, which is a given store of cached data.  Items are
-retrieved from the pool, interacted with, and returned to it.  While a bit more
-verbose at times it offers a good, robust, flexible approach to caching,
-especially in cases where caching is more involved than simply saving and
-retrieving a string.
+### 4.1 既定方案
 
-Most method names were chosen based on common practice and method names in a
-survey of member projects and other popular non-member systems.
+本规范使用「存储库模型」或「数据映射器」模型，而不是传统的「可过期键值对」模型。主要是因为灵活性。简单的键值对模型更难扩展。
 
-Pros:
+此模型强制使用 CacheItem 对象（一种表示缓存实体的对象）和池对象（一种缓存数据的给定存储对象）。CatcheItem 对象从池中检索、与之交互并返回给自己。
+虽然有时有点繁琐，但它提供了更好、更健壮、理灵活的缓存解决方案，尤其是在比简单地存取字符串更复杂的情况下。
 
-* Flexible and extensible
-* Allows a great deal of variation in implementation without violating the interface
-* Does not implicitly expose object constructors as a pseudo-interface.
+大多数方法名都是基于对成员项目和其他流行的非成员项目的调查中常见实践和方法名来选择的。
 
-Cons:
+优点：
 
-* A bit more verbose than the naive approach
+* 灵活性和可扩展性
+* 允许在不与接口相违背的前提下，在实现中包含大量的变化。
+* 没有暗中将对象构造器暴露为伪接口。
 
-Examples:
+缺点：
 
-Some common usage patterns are shown below.  These are non-normative but should
-demonstrate the application of some design decisions.
+* 比内置方案更复杂
+
+示例：
+
+下面展示了一些常用的模式。这些都是不规范的，但能说明一些设计决策的应用。
 
 ~~~php
 /**
- * Gets a list of available widgets.
+ * 获取可用部件列表。
  *
- * In this case, we assume the widget list changes so rarely that we want
- * the list cached forever until an explicit clear.
+ * 此处我们假定部件列表很少变动，我们想让列表在清楚前一直被缓存。
  */
 function get_widget_list()
 {
@@ -108,10 +78,9 @@ function get_widget_list()
 
 ~~~php
 /**
- * Caches a list of available widgets.
+ * 缓存可用部件列表。
  *
- * In this case, we assume a list of widgets has been computed and we want
- * to cache it, regardless of what may already be cached.
+ * 此处我们假定部件列表已被计算且我们想缓存它，不理会我们已经缓存了什么。
  */
 function save_widget_list($list)
 {
@@ -124,10 +93,9 @@ function save_widget_list($list)
 
 ~~~php
 /**
- * Clears the list of available widgets.
+ * 清除可用部件列表。
  *
- * In this case, we simply want to remove the widget list from the cache. We
- * don't care if it was set or not; the post condition is simply "no longer set".
+ * 此处我们仅想从缓存中移除部件列表。不关心它是否已缓存；后置条件仅为「非长期设置」。
  */
 function clear_widget_list()
 {
@@ -138,10 +106,9 @@ function clear_widget_list()
 
 ~~~php
 /**
- * Clears all widget information.
+ * 清除所有部件信息。
  *
- * In this case, we want to empty the entire widget pool. There may be other
- * pools in the application that will be unaffected.
+ * 此处我们想要清空整个部件池。应用中可能还有其它的池，它们将不受影响。
  */
 function clear_widget_cache()
 {
@@ -152,18 +119,13 @@ function clear_widget_cache()
 
 ~~~php
 /**
- * Load widgets.
+ * 载入部件。
  *
- * We want to get back a list of widgets, of which some are cached and some
- * are not. This of course assumes that loading from the cache is faster than
- * whatever the non-cached loading mechanism is.
+ * 我们想要取回部件列表，其中一些已被缓存，一些则没有。 这当然就表现为从缓存中载入要比非缓存载入机制要快。
  *
- * In this case, we assume widgets may change frequently so we only allow them
- * to be cached for an hour (3600 seconds). We also cache newly-loaded objects
- * back to the pool en masse.
+ * 此处，我们假设部件可能频繁变化，所以我们只允许它们被缓存一小时（3600秒）。我们还将新加载的对象全部缓存回池中。
  *
- * Note that a real implementation would probably also want a multi-load
- * operation for widgets, but that's irrelevant for this demonstration.
+ * 需要留意，真实环境的实现可能还想要部件的多载入操作，但与此范例无关。
  */
 function load_widgets(array $ids)
 {
@@ -183,7 +145,7 @@ function load_widgets(array $ids)
         }
         $widget[$value->id()] = $value;
     }
-    $pool->commit(); // If no items were deferred this is a no-op.
+    $pool->commit(); // 如果没有元素延迟处理，此函数什么也不做。
 
     return $widgets;
 }
@@ -191,15 +153,13 @@ function load_widgets(array $ids)
 
 ~~~php
 /**
- * This examples reflects functionality that is NOT included in this
- * specification, but is shown as an example of how such functionality MIGHT
- * be added by extending implementations.
+ * 此例中的动向功能**没有**包含在规范中，但是例子中展示的一些功能**可能**被添加在扩展实现中。
  */
 
 interface TaggablePoolInterface extends Psr\Cache\CachePoolInterface
 {
     /**
-     * Clears only those items from the pool that have the specified tag.
+     * 仅从池中清除有特定标签的元素。
      */
     clearByTag($tag);
 }
@@ -210,7 +170,7 @@ interface TaggableItemInterface extends Psr\Cache\CacheItemInterface
 }
 
 /**
- * Caches a widget with tags.
+ * 缓存带有标签的部件。
  */
 function set_widget(TaggablePoolInterface $pool, Widget $widget)
 {
@@ -223,100 +183,72 @@ function set_widget(TaggablePoolInterface $pool, Widget $widget)
 }
 ~~~
 
-### 4.2 Alternative: "Weak item" approach
+### 4.2 备选方案：「弱元素」方案
 
-A variety of earlier drafts took a simpler "key value with expiration" approach,
-also known as a "weak item" approach.  In this model, the "Cache Item" object
-was really just a dumb array-with-methods object.  Users would instantiate it
-directly, then pass it to a cache pool.  While more familiar, that approach
-effectively prevented any meaningful extension of the Cache Item.  It effectively
-made the Cache Item's constructor part of the implicit interface, and thus
-severely curtailed extensibility or the ability to have the cache item be where
-the intelligence lives.
+一些较早的草案提供了简单的「过期键值对」方案，也被称为「弱元素」方案。在这个模型中，「缓存元素」只是一个带有方法的哑数组对象。
+用户直接实例化它，然后传递给它一个缓存池。虽然更熟悉，但那些方案实际上阻止了扩展**缓存元素**的企图。它使**缓存元素**的构造函数成为隐式接口的一部分， 从而极大地限制了可扩展性和缓存元素位于智能存活区的能力。
 
-In a poll conducted in June 2013, most participants showed a clear preference for
-the more robust if less conventional "Strong item" / repository approach, which
-was adopted as the way forward.
+2013年6月举行的一项调查中，多数参与者倾向于将更健壮但并不传统的「强元素」/存储库方案采纳为未来的发展方向。
 
-Pros:
-* More traditional approach.
+优点：
 
-Cons:
-* Less extensible or flexible.
+* 更传统的方案。
 
-### 4.3 Alternative: "Naked value" approach
+缺点：
 
-Some of the earliest discussions of the Cache spec suggested skipping the Cache
-Item concept all together and just reading/writing raw values to be cached.
-While simpler, it was pointed out that made it impossible to tell the difference
-between a cache miss and whatever raw value was selected to represent a cache
-miss.  That is, if a cache lookup returned NULL it's impossible to tell if there
-was no cached value or if NULL was the value that had been cached.  (NULL is a
-legitimate value to cache in many cases.)
+* 缺少扩展性和灵活性。
 
-Most more robust caching implementations we reviewed -- in particular the Stash
-caching library and the home-grown cache system used by Drupal -- use some sort
-of structured object on `get` at least to avoid confusion between a miss and a
-sentinel value.  Based on that prior experience FIG decided that a naked value
-on `get` was impossible.
+### 4.3 备选方案：「裸值」方案
 
-### 4.4 Alternative: ArrayAccess Pool
+关于缓存规范的早期讨论建议路过所有的**缓存元素**概念，而直接读取要缓存的原始值。虽然简单，但有人指出这种方法无法区分缓存未命中和被用于表示缓存未命中的原始值。
+就是说，如果缓存查找返回了一个 NULL，它可能表示没有缓存值或者被缓存的值就是 NUll 本身（在很多情况下 NULL 是一个合法的缓存值）。
 
-There was a suggestion to make a Pool implement ArrayAccess, which would allow
-for cache get/set operations to use array syntax.  That was rejected due to
-limited interest, limited flexibility of that approach (trivial get and set with
-default control information is all that's possible), and because it's trivial
-for a particular implementation to include as an add-on should it desire to
-do so.
+我们评估了很多更健壮的缓存实现（尤其是存储缓存库和 Drupal 使用的自建缓存库），在 `get` 上使用某种结构化对象，至少可以区分「未命中」和「哨兵值」。依据此前的经验，FIG 决定不能在 `get` 上使用裸值。
 
-## 5. People
+### 4.4 备选方案：数组访问池
 
-### 5.1 Editor
+有一个使用「池」实现「数组访问」的建议，即允许在缓存读写操作中使用数组语法。由于好处、灵活性有限（能够实现带有默认操作信息的简单读写），并且某一实现很容易将其添加为附加组件，导致该方案被拒绝。
+
+## 5. 参与人员
+
+### 5.1 编辑
 
 * Larry Garfield
 
-### 5.2 Sponsors
+### 5.2 担保人
 
 * Paul Dragoonis, PPI Framework (Coordinator)
 * Robert Hafner, Stash
 
-## 6. Votes
+## 6. 投票
 
-[Acceptance vote on the mailing list](https://groups.google.com/forum/#!msg/php-fig/dSw5IhpKJ1g/O9wpqizWAwAJ)
+[接受投票的邮件列表](https://groups.google.com/forum/#!msg/php-fig/dSw5IhpKJ1g/O9wpqizWAwAJ)
 
-## 7. Relevant Links
+## 7. 相关链接
 
-_**Note:** Order descending chronologically._
+_**注意** 按时间先后倒序排列。_
 
-* [Survey of existing cache implementations][1], by @dragoonis
-* [Strong vs. Weak informal poll][2], by @Crell
-* [Implementation details informal poll][3], by @Crell
+* [缓存实现纵览][1], by @dragoonis
+* [强 vs. 弱 非正式调查][2], by @Crell
+* [实现细节非正式调查][3], by @Crell
 
 [1]: https://docs.google.com/spreadsheet/ccc?key=0Ak2JdGialLildEM2UjlOdnA4ekg3R1Bfeng5eGlZc1E#gid=0
 [2]: https://docs.google.com/spreadsheet/ccc?key=0AsMrMKNHL1uGdDdVd2llN1kxczZQejZaa3JHcXA3b0E#gid=0
 [3]: https://docs.google.com/spreadsheet/ccc?key=0AsMrMKNHL1uGdEE3SU8zclNtdTNobWxpZnFyR0llSXc#gid=1
 
-## 8. Errata
+## 8. 勘误表
 
-### 8.1 Handling of incorrect DateTime values in expiresAt()
+### 8.1 在 expiresAt() 中处理错误「DataTime」值
 
-The `CacheItemInterface::expiresAt()` method's `$expiration` parameter is untyped
-in the interface, but in the docblock is specified as `\DateTimeInterface`.  The
-intent is that either a `\DateTime` or `\DateTimeImmutable` object is allowed.
-However, `\DateTimeInterface` and `\DateTimeImmutable` were added in PHP 5.5, and
-the authors chose not to impose a hard syntactic requirement for PHP 5.5 on the
-specification.
+`CacheItemInterface` 接口中 `CacheItemInterface::expiresAt()` 方法的 `$expiration` 参数未指定类型，
+但是文档块中指明是 `\DateTimeInterface`。 即允许 `\DateTime` 和 `\DateTimeImmutable` 对象。但 `\DateTimeInterface` 和 `\DateTimeImmutable` 是在 PHP 5.5 引入的，且作者选择不在规范中强制要求必须是 PHP 5.5 语法。
 
-Despite that, implementers MUST accept only `\DateTimeInterface` or compatible types
-(such as `\DateTime` and `\DateTimeImmutable`) as if the method was explicitly typed.
-(Note that the variance rules for a typed parameter may vary between language versions.)
+尽管如此，实现**必须**仅允许 `\DateTimeInterface` 或其兼容类型（例如 `\DateTime` 和 `\DateTimeImmutable`）作为方法预期的输入类型。
+（注意不同版本间的类型参数变化规则可能有所不同）。
 
-Simulating a failed type check unfortunately varies between PHP versions and thus is not
-recommended.  Instead, implementors SHOULD throw an instance of `\Psr\Cache\InvalidArgumentException`.  
-The following sample code is recommended in order to enforce the type check on the expiresAt()
-method:
+模拟失败的类型检查，在不同的版本间有所不同，因此不推荐使用。取而代之的是，实现者**应当**抛出一个 `\Psr\Cache\InvalidArgumentException` 实例。下面的示例代码推荐用于在 expiresAt() 方法中强制类型检测：
 
-```php
+~~~php
 
 class ExpiresAtInvalidParameterException implements Psr\Cache\InvalidArgumentException {}
 
@@ -333,4 +265,6 @@ if (! (
         is_object($expiration) ? get_class($expiration) : gettype($expiration)
     ));
 }
-```
+~~~
+
+[^译者注]: 原文为 Non-Goals，意为「非目标」，即下面这段内容不是本标准的目标。
