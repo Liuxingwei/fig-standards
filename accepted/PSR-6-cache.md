@@ -185,125 +185,114 @@ namespace Psr\Cache;
 interface CacheItemPoolInterface
 {
     /**
-     * Returns a Cache Item representing the specified key.
+     * 返回表示指定键的缓存元素。
      *
-     * This method must always return a CacheItemInterface object, even in case of
-     * a cache miss. It MUST NOT return null.
+     * 此方法必须返回 CacheItemInterface 对象，即使在缓存未命中的情况下。**不得**返回 null 值。
      *
      * @param string $key
-     *   The key for which to return the corresponding Cache Item.
+     *   想要返回对应缓存元素的键。
      *
      * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *   如果键字符串非法，则**必须**抛出 \Psr\Cache\InvalidArgumentException 异常。
      *
      * @return CacheItemInterface
-     *   The corresponding Cache Item.
+     *   与给定键对应的缓存元素。
      */
     public function getItem($key);
 
     /**
-     * Returns a traversable set of cache items.
+     * 返回一个可遍历的缓存元素集合。
      *
      * @param string[] $keys
-     *   An indexed array of keys of items to retrieve.
+     *   要检索的元素的键的索引数组。
      *
      * @throws InvalidArgumentException
-     *   If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *   如果 $keys 数组的任意一个键非法，则**必须**抛出 \Psr\Cache\InvalidArgumentException 数组。
      *
      * @return array|\Traversable
-     *   A traversable collection of Cache Items keyed by the cache keys of
-     *   each item. A Cache item will be returned for each key, even if that
-     *   key is not found. However, if no keys are specified then an empty
-     *   traversable MUST be returned instead.
+     *   每个成员均由缓存键作为标识键的缓存元素的可遍历集合。总是为每个键返回一个缓存元素，即使该键没有找到。如果没有指定任何键，也**必须**返回一个空的可遍历集合。
      */
     public function getItems(array $keys = array());
 
     /**
-     * Confirms if the cache contains specified cache item.
+     * 确认缓存是否包含指定的缓存元素。
      *
-     * Note: This method MAY avoid retrieving the cached value for performance reasons.
-     * This could result in a race condition with CacheItemInterface::get(). To avoid
-     * such situation use CacheItemInterface::isHit() instead.
+     * 注意： 由于性能原因，此方法**可以**不检索缓存值。这可能导致与 CacheItemInterface::get() 的竞态条件。可以使用 CacheItemInterface::isHit() 代替本方法来避免出现这种情况。
      *
      * @param string $key
-     *   The key for which to check existence.
+     *   检测是否存在的键。
      *
      * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *   如果 $key 值非法，则**必须**抛出 \Psr\Cache\InvalidArgumentException 异常。
      *
      * @return bool
-     *   True if item exists in the cache, false otherwise.
+     *   如果缓存中存在元素返回 True，否则返回 False。
      */
     public function hasItem($key);
 
     /**
-     * Deletes all items in the pool.
+     * 删除池中全部元素。
      *
      * @return bool
-     *   True if the pool was successfully cleared. False if there was an error.
+     *   成功清除缓存池返回 True，出错返回 False。
      */
     public function clear();
 
     /**
-     * Removes the item from the pool.
+     * 从池中删除元素。
      *
      * @param string $key
-     *   The key to delete.
+     *   想要删除元素的键。
      *
      * @throws InvalidArgumentException
-     *   If the $key string is not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *   如果 $key 值非法，则**必须**抛出 \Psr\Cache\InvalidArgumentException 异常。
      *
      * @return bool
-     *   True if the item was successfully removed. False if there was an error.
+     *   元素成功删除返回 True，出错返回 False。 
      */
     public function deleteItem($key);
 
     /**
-     * Removes multiple items from the pool.
+     * 从池中删除多个元素。
      *
      * @param string[] $keys
-     *   An array of keys that should be removed from the pool.
+     *   想要删除元素的键的数组。
      *
      * @throws InvalidArgumentException
-     *   If any of the keys in $keys are not a legal value a \Psr\Cache\InvalidArgumentException
-     *   MUST be thrown.
+     *   如果 $keys 中任意一个键非法，则**必须**抛出 \Psr\Cache\InvalidArgumentException 异常。
      *
      * @return bool
-     *   True if the items were successfully removed. False if there was an error.
+     *   成功删除元素返回 True，否则返回 False。
      */
     public function deleteItems(array $keys);
 
     /**
-     * Persists a cache item immediately.
+     * 实时持久化缓存元素。
      *
      * @param CacheItemInterface $item
-     *   The cache item to save.
+     *   要保存的缓存对象。
      *
      * @return bool
-     *   True if the item was successfully persisted. False if there was an error.
+     *   元素成功持久化返回 True，否则返回 False。 
      */
     public function save(CacheItemInterface $item);
 
     /**
-     * Sets a cache item to be persisted later.
+     * 设置缓存元素延迟缓存。
      *
      * @param CacheItemInterface $item
-     *   The cache item to save.
+     *   要保存的缓存对象。
      *
      * @return bool
-     *   False if the item could not be queued or if a commit was attempted and failed. True otherwise.
+     *   如果元素未能被加入队列，或者尝试提交失败返回 False，否则返回 True。 
      */
     public function saveDeferred(CacheItemInterface $item);
 
     /**
-     * Persists any deferred cache items.
+     * 持久化已延迟的缓存元素。
      *
      * @return bool
-     *   True if all not-yet-saved items were successfully saved or there were none. False otherwise.
+     *   所有未保存的元素成功保存，或者没有未保存元素返回 True，否则返回 False。 
      */
     public function commit();
 }
@@ -311,11 +300,9 @@ interface CacheItemPoolInterface
 
 ### CacheException
 
-This exception interface is intended for use when critical errors occur,
-including but not limited to *cache setup* such as connecting to a cache server
-or invalid credentials supplied.
+此异常接口设计用于发生严重错误时，包括但不限于*缓存设置*（例如连接缓存服务或提供的凭证无效）。
 
-Any exception thrown by an Implementing Library MUST implement this interface.
+被「实现库」抛出的异常**必须**实现本接口。
 
 ~~~php
 <?php
@@ -323,7 +310,7 @@ Any exception thrown by an Implementing Library MUST implement this interface.
 namespace Psr\Cache;
 
 /**
- * Exception interface for all exceptions thrown by an Implementing Library.
+ * 实现库抛出的全部异常的接口。
  */
 interface CacheException
 {
@@ -338,10 +325,9 @@ interface CacheException
 namespace Psr\Cache;
 
 /**
- * Exception interface for invalid cache arguments.
+ * 无效缓存参数异常接口。
  *
- * Any time an invalid argument is passed into a method it must throw an
- * exception class which implements Psr\Cache\InvalidArgumentException.
+ * 无论何时向方法传递无效参数都必须抛出实现了 Psr\Cache\InvalidArgumentException 接口的异常类
  */
 interface InvalidArgumentException extends CacheException
 {
